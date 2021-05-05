@@ -18,6 +18,9 @@ environment:
 code:
   local_dir: $CONFIG_DIR/../
 
+env_defaults:
+  REP: 0
+
 search:
   job_template:
     name: _{experiment_name:s}_{auto:3s}
