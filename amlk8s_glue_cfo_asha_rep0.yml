@@ -35,7 +35,7 @@ search:
   params:
     - name: algo_idx
       spec: discrete
-      values: [5, 6]
+      values: [5]
     - name: pretrained_idx
       spec: discrete
       values: [3, 1, 2, 0, 4]
