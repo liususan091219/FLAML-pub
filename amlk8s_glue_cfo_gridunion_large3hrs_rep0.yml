@@ -25,9 +25,9 @@ env_defaults:
 search:
   job_template:
     name: _{experiment_name:s}_{auto:3s}
-    sku: 32G8
+    sku: 32G4
     command:
-    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode hpo --dataset_idx {dataset_idx} --rep_id $REP --data_root_dir './data/' --sample_num 100000 --time_budget 3600 --space_idx {space_idx} --algo_idx {algo_idx} --pretrained_idx {pretrained_idx}
+    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode hpo --dataset_idx {dataset_idx} --rep_id $REP --data_root_dir './data/' --sample_num 100000 --time_budget 10800 --space_idx {space_idx} --algo_idx {algo_idx} --pretrained_idx {pretrained_idx}
     submit_args: &retry_args
       max_attempts: 0
   type: grid
@@ -35,10 +35,10 @@ search:
   params:
     - name: algo_idx
       spec: discrete
-      values: [2]
+      values: [4]
     - name: space_idx
       spec: discrete
-      values: [0]
+      values: [1]
     - name: pretrained_idx
       spec: discrete
       values: [5, 6]
