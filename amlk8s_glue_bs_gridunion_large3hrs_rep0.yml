@@ -35,10 +35,10 @@ search:
   params:
     - name: algo_idx
       spec: discrete
-      values: [4]
+      values: [0]
     - name: space_idx
       spec: discrete
-      values: [0]
+      values: [1]
     - name: pretrained_idx
       spec: discrete
       values: [5, 6]
