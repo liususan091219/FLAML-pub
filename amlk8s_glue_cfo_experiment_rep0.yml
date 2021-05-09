@@ -38,7 +38,7 @@ search:
       values: [4]
     - name: space_idx
       spec: discrete
-      values: [3, 4]
+      values: [2, 3]
     - name: pretrained_idx
       spec: discrete
       values: [0, 1, 2, 3, 4]
