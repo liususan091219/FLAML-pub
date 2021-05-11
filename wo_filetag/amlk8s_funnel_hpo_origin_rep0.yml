@@ -17,7 +17,7 @@ environment:
     - pip install azure-storage-blob
 
 code:
-  local_dir: $CONFIG_DIR/key/
+  local_dir: $CONFIG_DIR/../key/
 
 env_defaults:
   REP: 0
