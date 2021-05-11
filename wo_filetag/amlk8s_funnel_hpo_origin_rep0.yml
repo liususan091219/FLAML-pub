@@ -20,7 +20,7 @@ code:
   local_dir: $CONFIG_DIR/key/
 
 env_defaults:
-  REP: 1
+  REP: 0
 
 search:
   job_template:
