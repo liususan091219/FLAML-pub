@@ -31,7 +31,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 3
+  max_trials: 6
   params:
     - name: algo_idx
       spec: discrete
@@ -41,7 +41,7 @@ search:
       values: [1]
     - name: pretrained_idx
       spec: discrete
-      values: [4]
+      values: [3, 4]
     - name: dataset_idx
       spec: discrete
       values: [0, 1, 2]
