@@ -27,7 +27,7 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode grid_search --dataset_idx {dataset_idx} --rep_id $REP --data_root_dir 'data/' --sample_num 1 --time_budget 10800 --pretrained_idx {pretrained_idx} --resplit_mode origin
+    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode grid_search --dataset_idx {dataset_idx} --rep_id $REP --data_root_dir 'data/' --sample_num 1 --time_budget 10800 --pretrained_idx {pretrained_idx} --resplit_idx 1
     submit_args: &retry_args
       max_attempts: 0
   type: grid
