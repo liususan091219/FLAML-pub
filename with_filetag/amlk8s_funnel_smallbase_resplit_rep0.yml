@@ -41,7 +41,7 @@ search:
       values: [1]
     - name: pretrained_idx
       spec: discrete
-      values: [3, 4]
+      values: [4]
     - name: dataset_idx
       spec: discrete
       values: [0, 1, 2]
