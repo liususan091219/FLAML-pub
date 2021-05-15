@@ -27,21 +27,30 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode hpo --dataset_idx {dataset_idx} --rep_id $REP --data_root_dir 'data/' --sample_num 100000 --time_budget 14400 --space_idx {space_idx} --algo_idx {algo_idx} --pretrained_idx {pretrained_idx} --resplit_idx 0
+    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode hpo --dataset_subdataset_name {dataset_subdataset_name} --rep_id $REP --data_root_dir 'data/' --sample_num 100000 --time_budget 14400 --space_mode {space_mode} --algo_name {algo_name} --pretrained_model {pretrained_model} --resplit_mode {resplit_mode}
     submit_args: &retry_args
       max_attempts: 0
   type: grid
   max_trials: 3
   params:
-    - name: algo_idx
+    - name: algo_name
       spec: discrete
-      values: [2]
-    - name: space_idx
+      values: ["Optuna"]
+    - name: resplit_mode
       spec: discrete
-      values: [1]
-    - name: pretrained_idx
+      values: ["resplit"]
+    - name: pruner
       spec: discrete
-      values: [8]
-    - name: dataset_idx
+      values: ["None"]
+    - name: space_mode
       spec: discrete
-      values: [0, 1, 2]
+      values: ["hpo_space_gridunion_other"]
+    - name: search_alg_arg_mode
+      spec: discrete
+      values: ["default"]
+    - name: pretrained_model
+      spec: discrete
+      values: ["funnel-transformer/xlarge-base"]
+    - name: dataset_subdataset_name
+      spec: discrete
+      values: ["glue;cola", "glue;mrpc", "glue;rte"]
