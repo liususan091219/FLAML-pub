@@ -27,7 +27,7 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode hpo --dataset_subdataset_name {dataset_subdataset_name} --rep_id $REP --data_root_dir 'data/' --sample_num 100000 --time_budget 14400 --space_mode {space_mode} --algo_name {algo_name} --pretrained_model {pretrained_model} --resplit_mode {resplit_mode} --search_alg_arg_mode {search_alg_arg_mode}
+    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode hpo --dataset_subdataset_name {dataset_subdataset_name} --rep_id $REP --data_root_dir 'data/' --sample_num 100000 --time_budget 14400 --space_mode {space_mode} --algo_name {algo_name} --pretrained_model {pretrained_model} --resplit_mode {resplit_mode} --search_alg_arg_mode {search_alg_arg_mode} --pruner {pruner}
     submit_args: &retry_args
       max_attempts: 0
   type: grid
