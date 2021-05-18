@@ -24,7 +24,7 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/run_autohf.py --server_name tmdev --algo_mode {algo_mode} --dataset_subdataset_name {dataset_subdataset_name} --space_mode {space_mode} --algo_name {algo_name} --pruner {pruner} --pretrained_model_size {pretrained_model} --data_root_dir 'data/' --sample_num 10000 --time_budget 10000 --rep_id {rep_id} --resplit_mode {resplit_mode} --search_alg_args_mode {search_alg_args_mode} --key_path . --yml_file amlk8s_funnel_list.yml
+    - python FLAML/test/hf/run_autohf.py --server_name tmdev --algo_mode {algo_mode} --dataset_subdataset_name {dataset_subdataset_name} --space_mode {space_mode} --algo_name {algo_name} --pruner {pruner} --pretrained_model_size {pretrained_model} --data_root_dir 'data/' --sample_num 10000 --time_budget 10000 --rep_id {rep_id} --resplit_mode {resplit_mode} --search_alg_args_mode {search_alg_args_mode} --key_path "." --yml_file amlk8s_funnel_list.yml
     submit_args: &retry_args
       max_attempts: 0
   type: grid
