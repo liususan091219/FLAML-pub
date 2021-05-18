@@ -19,15 +19,12 @@ environment:
 code:
   local_dir: $CONFIG_DIR/../key/
 
-env_defaults:
-  REP: 0
-
 search:
   job_template:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/run_autohf.py --server_name azureml --algo_mode {algo_mode} --dataset_subdataset_name {dataset_subdataset_name} --rep_id $REP --data_root_dir 'data/' --sample_num 100000 --time_budget 14400 --space_mode {space_mode} --algo_name {algo_name} --pretrained_model {pretrained_model} --resplit_mode {resplit_mode} --search_alg_arg_mode {search_alg_arg_mode} --pruner {pruner}
+    - python FLAML/test/hf/run_autohf.py --server_name tmdev --algo_mode {algo_mode} --dataset_subdataset_name {dataset_subdataset_name} --space_mode {space_mode} --algo_name {algo_name} --pruner {pruner} --pretrained_model_size {pretrained_model} --data_root_dir 'data/' --sample_num 10000 --time_budget 10000 --rep_id {rep_id} --resplit_mode {resplit_mode} --search_alg_args_mode {search_alg_args_mode} --key_path .
     submit_args: &retry_args
       max_attempts: 0
   type: grid
@@ -57,3 +54,9 @@ search:
     - name: dataset_subdataset_name
       spec: discrete
       values: ["glue;cola", "glue;mrpc", "glue;rte"]
+    - name: search_alg_args_mode
+      spec: discrete
+      values: ["dft", "exp"]
+    - name: rep_id
+      spec: discrete
+      values: [0,1,2]

@@ -24,7 +24,7 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/run_autohf.py --server_name tmdev --algo_mode {algo_mode} --dataset_subdataset_name {dataset_subdataset_name} --space_mode {space_mode} --algo_name {algo_name} --pruner {pruner} --pretrained_model_size {pretrained_model} --data_root_dir 'data/' --sample_num 10000 --time_budget 10000 --rep_id {rep_id} --resplit_mode {resplit_mode} --search_alg_args_mode {search_alg_args_mode} --key_path . --yml_file amlk8s_funnel_xlargebase_resplit_rep0.yml
+    - python FLAML/test/hf/run_autohf.py --server_name tmdev --algo_mode {algo_mode} --dataset_subdataset_name {dataset_subdataset_name} --space_mode {space_mode} --algo_name {algo_name} --pruner {pruner} --pretrained_model_size {pretrained_model} --data_root_dir 'data/' --sample_num 10000 --time_budget 10000 --rep_id {rep_id} --resplit_mode {resplit_mode} --search_alg_args_mode {search_alg_args_mode} --key_path .
     submit_args: &retry_args
       max_attempts: 0
   type: grid
@@ -32,31 +32,28 @@ search:
   params:
     - name: algo_mode
       spec: discrete
-      values: ["hpo"]
+      values: ["list"]
     - name: algo_name
       spec: discrete
-      values: ["Optuna"]
+      values: ["optuna"]
     - name: resplit_mode
       spec: discrete
-      values: ["resplit"]
+      values: ["rspt"]
     - name: pruner
       spec: discrete
       values: ["None"]
     - name: space_mode
       spec: discrete
-      values: ["hpo_space_gridunion_other"]
-    - name: search_alg_arg_mode
-      spec: discrete
-      values: ["default"]
+      values: ["uni"]
     - name: pretrained_model
       spec: discrete
-      values: ["funnel-transformer/xlarge-base"]
+      values: ["funnel-transformer/xlarge-base;xlarge"]
     - name: dataset_subdataset_name
       spec: discrete
       values: ["glue;cola", "glue;mrpc", "glue;rte"]
     - name: search_alg_args_mode
       spec: discrete
-      values: ["dft", "exp"]
+      values: ["dft"]
     - name: rep_id
       spec: discrete
-      values: [0,1,2]
+      values: [0]
