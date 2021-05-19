@@ -44,7 +44,7 @@ search:
       values: ["None"]
     - name: space_mode
       spec: discrete
-      values: ["uni"]
+      values: ["uni_test"]
     - name: pretrained_model
       spec: discrete
       values: ["funnel-transformer/xlarge-base:xlarge"]
