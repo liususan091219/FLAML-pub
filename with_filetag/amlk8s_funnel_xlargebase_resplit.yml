@@ -47,10 +47,10 @@ search:
       values: ["uni"]
     - name: pretrained_model
       spec: discrete
-      values: ["funnel-transformer/xlarge-base;xlarge"]
+      values: ["funnel-transformer/xlarge-base:xlarge"]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["glue;cola", "glue;mrpc", "glue;rte"]
+      values: ["glue:cola", "glue:mrpc", "glue:rte"]
     - name: search_alg_args_mode
       spec: discrete
       values: ["dft"]
