@@ -50,7 +50,7 @@ search:
       values: ["funnel-transformer/xlarge-base:xlarge"]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["glue:cola"]
+      values: ["glue:cola", "glue:rte", "glue:mrpc"]
     - name: search_alg_args_mode
       spec: discrete
       values: ["dft"]
