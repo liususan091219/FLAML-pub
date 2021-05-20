@@ -28,7 +28,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 3
+  max_trials: 9
   params:
     - name: algo_mode
       spec: discrete
@@ -56,4 +56,4 @@ search:
       values: ["dft"]
     - name: rep_id
       spec: discrete
-      values: [0]
+      values: [0,1,2]
