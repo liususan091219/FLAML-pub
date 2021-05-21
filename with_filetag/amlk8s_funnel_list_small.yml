@@ -32,7 +32,7 @@ search:
   params:
     - name: algo_mode
       spec: discrete
-      values: ["list"]
+      values: ["list_s"]
     - name: algo_name
       spec: discrete
       values: ["optuna"]
