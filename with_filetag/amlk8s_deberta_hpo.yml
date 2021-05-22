@@ -28,7 +28,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 6
+  max_trials: 9
   params:
     - name: algo_mode
       spec: discrete
