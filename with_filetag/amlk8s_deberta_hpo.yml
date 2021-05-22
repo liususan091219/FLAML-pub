@@ -56,4 +56,4 @@ search:
       values: ["dft"]
     - name: rep_id
       spec: discrete
-      values: [1,2]
+      values: [0,1,2]
