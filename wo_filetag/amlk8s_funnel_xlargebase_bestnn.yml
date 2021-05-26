@@ -28,14 +28,14 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 9
+  max_trials: 18
   params:
     - name: algo_mode
       spec: discrete
       values: ["bestnn"]
     - name: algo_name
       spec: discrete
-      values: ["optuna"]
+      values: ["bs", "optuna"]
     - name: resplit_mode
       spec: discrete
       values: ["rspt"]
