@@ -24,7 +24,7 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/test_glue.py --server_name tmdev --algo_mode grid --data_root_dir data/ --resplit_mode ori --yml_file test.yml --key_path ../../ --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model} --space_mode cus --search_alg_args_mode dft --pruner None
+    - python FLAML/test/hf/test_glue.py --server_name tmdev --algo_mode grid --data_root_dir data/ --resplit_mode ori --yml_file test.yml --key_path . --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model} --space_mode cus --search_alg_args_mode dft --pruner None
     submit_args: &retry_args
       max_attempts: 0
   type: grid
