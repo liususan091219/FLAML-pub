@@ -35,7 +35,7 @@ search:
       values: ["google/electra-base-discriminator:base"]
     - name: pruner
       spec: discrete
-      values: [ "asha" ]
+      values: ["asha"]
     - name: dataset_subdataset_name
       spec: discrete
       values: ["glue:wnli", "glue:rte", "glue:cola",
