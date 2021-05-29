@@ -24,20 +24,20 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/test_glue.py --server_name tmdev --algo_mode grid --data_root_dir data/ --resplit_mode ori --yml_file test.yml --key_path . --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model} --space_mode cus --search_alg_args_mode dft --pruner None --rep_id {rep_id} --root_log_path logs_acl --yml_file amlk8s_acl_grid.yml
+    - python FLAML/test/hf/test_glue.py --server_name tmdev --algo_mode grid --data_root_dir data/ --resplit_mode ori --yml_file test.yml --key_path . --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model} --space_mode cus --search_alg_args_mode dft --pruner None --rep_id {rep_id} --root_log_path logs_acl --yml_file amlk8s_acl_grid_roberta.yml
     submit_args: &retry_args
       max_attempts: 3
   type: grid
-  max_trials: 16
+  max_trials: 7
   params:
     - name: pretrained_model
       spec: discrete
-      values: ["google/electra-base-discriminator:base","roberta-base:base"]
+      values: ["roberta-base:base"]
     - name: dataset_subdataset_name
       spec: discrete
       values: ["glue:wnli", "glue:rte", "glue:cola",
                "glue:mrpc", "glue:stsb", "glue:qnli",
-               "glue:sst2", "glue:mnli"]
+               "glue:sst2"]
     - name: rep_id
       spec: discrete
       values: [0]
