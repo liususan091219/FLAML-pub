@@ -32,7 +32,7 @@ search:
   params:
     - name: pretrained_model
       spec: discrete
-      values: ["roberta-base"]
+      values: ["roberta-base:base"]
     - name: dataset_subdataset_name
       spec: discrete
       values: ["glue:wnli", "glue:rte", "glue:cola",
