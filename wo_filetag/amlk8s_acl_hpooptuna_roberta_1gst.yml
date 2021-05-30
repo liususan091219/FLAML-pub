@@ -24,7 +24,7 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: 32G4
     command:
-    - python FLAML/test/hf/test_glue.py --server_name tmdev --algo_mode hpo --data_root_dir data/ --resplit_mode ori --yml_file test.yml --key_path . --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model} --space_mode cus --search_alg_args_mode dft --pruner {pruner} --rep_id {rep_id} --root_log_path logs_acl --algo_name optuna --time_as_grid 1
+    - python FLAML/test/hf/test_glue.py --server_name tmdev --algo_mode hpo --data_root_dir data/ --resplit_mode ori --yml_file test.yml --key_path . --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model} --space_mode cus --search_alg_args_mode dft --pruner {pruner} --rep_id {rep_id} --root_log_path logs_acl --algo_name optuna --round_idx 0
     submit_args: &retry_args
       max_attempts: 3
   type: grid
