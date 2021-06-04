@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>FLAML API Documentation &mdash; FLAML  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> FLAML
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">FLAML API Documentation</a><ul>
+<li><a class="reference internal" href="#automl">AutoML</a></li>
+<li><a class="reference internal" href="#tune">Tune</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">FLAML</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>FLAML API Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flaml-api-documentation">
+<h1>FLAML API Documentation<a class="headerlink" href="#flaml-api-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="automl">
+<h2>AutoML<a class="headerlink" href="#automl" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="tune">
+<h2>Tune<a class="headerlink" href="#tune" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaml.tune.run">
+<span class="sig-prename descclassname"><span class="pre">flaml.tune.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">training_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points_to_evaluate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_cost_partial_config</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cat_hp_cost</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_budget_s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">datetime.timedelta</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_attr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_resource</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_resource</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction_factor</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_intermediate_result</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_alg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources_per_trial</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_constraints</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_constraints</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_ray</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/tune/tune.html#run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.tune.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The trigger for HPO.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">flaml</span> <span class="kn">import</span> <span class="n">tune</span>
+
+<span class="k">def</span> <span class="nf">compute_with_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="n">current_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">metric2minimize</span> <span class="o">=</span> <span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">95000</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">time2eval</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">current_time</span>
+    <span class="n">tune</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="n">metric2minimize</span><span class="o">=</span><span class="n">metric2minimize</span><span class="p">,</span> <span class="n">time2eval</span><span class="o">=</span><span class="n">time2eval</span><span class="p">)</span>
+
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">tune</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">compute_with_config</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">qloguniform</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;metric2minimize&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span>
+    <span class="n">num_samples</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">time_budget_s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">use_ray</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">analysis</span><span class="o">.</span><span class="n">trials</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">last_result</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>training_function</strong> – A user-defined training function.</p></li>
+<li><p><strong>config</strong> – A dictionary to specify the search space.</p></li>
+<li><p><strong>points_to_evaluate</strong> – A list of initial hyperparameter
+configurations to run first.</p></li>
+<li><p><strong>low_cost_partial_config</strong> – <p>A dictionary from a subset of
+controlled dimensions to the initial low-cost values.
+e.g.,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;max_leaves&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>cat_hp_cost</strong> – <p>A dictionary from a subset of categorical dimensions
+to the relative cost of each choice.
+e.g.,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;tree_method&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>i.e., the relative cost of the
+three choices of ‘tree_method’ is 1, 1 and 2 respectively</p>
+</p></li>
+<li><p><strong>metric</strong> – A string of the metric name to optimize for.</p></li>
+<li><p><strong>mode</strong> – A string in [‘min’, ‘max’] to specify the objective as
+minimization or maximization.</p></li>
+<li><p><strong>time_budget_s</strong> – A float of the time budget in seconds.</p></li>
+<li><p><strong>prune_attr</strong> – <p>A string of the attribute used for pruning.
+Not necessarily in space.
+When prune_attr is in space, it is a hyperparameter, e.g.,</p>
+<blockquote>
+<div><p>’n_iters’, and the best value is unknown.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>When prune_attr is not in space, it is a resource dimension,</dt><dd><p>e.g., ‘sample_size’, and the peak performance is assumed
+to be at the max_resource.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>min_resource</strong> – A float of the minimal resource to use for the
+prune_attr; only valid if prune_attr is not in space.</p></li>
+<li><p><strong>max_resource</strong> – A float of the maximal resource to use for the
+prune_attr; only valid if prune_attr is not in space.</p></li>
+<li><p><strong>reduction_factor</strong> – A float of the reduction factor used for incremental
+pruning.</p></li>
+<li><p><strong>report_intermediate_result</strong> – A boolean of whether intermediate results
+are reported. If so, early stopping and pruning can be used.</p></li>
+<li><p><strong>search_alg</strong> – <p>An instance of BlendSearch as the search algorithm
+to be used. The same instance can be used for iterative tuning.
+e.g.,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flaml</span> <span class="kn">import</span> <span class="n">BlendSearch</span>
+<span class="n">algo</span> <span class="o">=</span> <span class="n">BlendSearch</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span>
+        <span class="n">space</span><span class="o">=</span><span class="n">search_space</span><span class="p">,</span>
+        <span class="n">low_cost_partial_config</span><span class="o">=</span><span class="n">low_cost_partial_config</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">analysis</span> <span class="o">=</span> <span class="n">tune</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">compute_with_config</span><span class="p">,</span>
+        <span class="n">search_alg</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> <span class="n">use_ray</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">analysis</span><span class="o">.</span><span class="n">trials</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">last_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>verbose</strong> – 0, 1, 2, or 3. Verbosity mode for ray if ray backend is used.
+0 = silent, 1 = only status updates, 2 = status and brief trial
+results, 3 = status and detailed trial results. Defaults to 2.</p></li>
+<li><p><strong>local_dir</strong> – A string of the local dir to save ray logs if ray backend is
+used; or a local dir to save the tuning log.</p></li>
+<li><p><strong>num_samples</strong> – An integer of the number of configs to try. Defaults to 1.</p></li>
+<li><p><strong>resources_per_trial</strong> – A dictionary of the hardware resources to allocate
+per trial, e.g., <cite>{‘cpu’: 1}</cite>. Only valid when using ray backend.</p></li>
+<li><p><strong>config_constraints</strong> – <p>A list of config constraints to be satisfied.
+e.g.,</p>
+<p>mem_size is a function which produces a float number for the bytes
+needed for a config.
+It is used to skip configs which do not fit in memory.</p>
+</p></li>
+<li><p><strong>metric_constraints</strong> – A list of metric constraints to be satisfied.
+e.g., <cite>[‘precision’, ‘&gt;=’, 0.9]</cite></p></li>
+<li><p><strong>use_ray</strong> – A boolean of whether to use ray as the backend</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaml.tune.report">
+<span class="sig-prename descclassname"><span class="pre">flaml.tune.</span></span><span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/tune/tune.html#report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.tune.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function called by the HPO application to report final or intermediate
+results.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">flaml</span> <span class="kn">import</span> <span class="n">tune</span>
+
+<span class="k">def</span> <span class="nf">compute_with_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="n">current_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">metric2minimize</span> <span class="o">=</span> <span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">95000</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">time2eval</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">current_time</span>
+    <span class="n">tune</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="n">metric2minimize</span><span class="o">=</span><span class="n">metric2minimize</span><span class="p">,</span> <span class="n">time2eval</span><span class="o">=</span><span class="n">time2eval</span><span class="p">)</span>
+
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">tune</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">compute_with_config</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">qloguniform</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;metric2minimize&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span>
+    <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">time_budget_s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">use_ray</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">analysis</span><span class="o">.</span><span class="n">trials</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">last_result</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_metric</strong> – Optional default anonymous metric for <code class="docutils literal notranslate"><span class="pre">tune.report(value)</span></code>.
+(For compatibility with ray.tune.report)</p></li>
+<li><p><strong>**kwargs</strong> – Any key value pair to be reported.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021, FLAML Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
