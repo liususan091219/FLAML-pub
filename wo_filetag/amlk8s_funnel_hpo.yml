@@ -47,7 +47,7 @@ search:
       values: ["uni"]
     - name: pretrained_model
       spec: discrete
-      values: ["microsoft/deberta-large:large"]
+      values: ["funnel-transformer/xlarge-base:xlarge"]
     - name: dataset_subdataset_name
       spec: discrete
       values: ["glue:cola", "glue:mrpc", "glue:rte"]
