@@ -29,7 +29,7 @@ search:
   type: grid
   max_trials: 18
   params:
-    - name: pretrained_model
+    - name: pretrained_model_size
       spec: discrete
       values: ["funnel-transformer/xlarge-base:xlarge"]
     - name: dataset_subdataset_name
