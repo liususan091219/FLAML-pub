@@ -90,6 +90,7 @@
 <li><a class="reference internal" href="#">FLAML API Documentation</a><ul>
 <li><a class="reference internal" href="#automl">AutoML</a></li>
 <li><a class="reference internal" href="#tune">Tune</a></li>
+<li><a class="reference internal" href="#online-automl">Online AutoML</a></li>
 <li><a class="reference internal" href="#nlp">NLP</a></li>
 </ul>
 </li>
@@ -813,8 +814,214 @@ unsuccessful, e.g. when the search space has already been set.
 </dd></dl>
 
 </div>
+<div class="section" id="online-automl">
+<h2>Online AutoML<a class="headerlink" href="#online-automl" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaml.AutoVW">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">flaml.</span></span><span class="sig-name descname"><span class="pre">AutoVW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_live_model_num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_space</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_config</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_resource_lease</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">automl_runner_args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler_args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_select_policy</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'threshold_loss_ucb'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'mae_clipped'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_selection_mode</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'min'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cb_coef</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/onlineml/autovw.html#AutoVW"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.AutoVW" title="Permalink to this definition">¶</a></dt>
+<dd><p>The AutoML class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaml.AutoVW.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_sample</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/onlineml/autovw.html#AutoVW.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.AutoVW.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaml.AutoVW.learn">
+<span class="sig-name descname"><span class="pre">learn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_sample</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/onlineml/autovw.html#AutoVW.learn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.AutoVW.learn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaml.AutoVW.AUTO">
+<span class="sig-name descname"><span class="pre">AUTO</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaml.AutoVW.AUTO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaml.AutoVW.get_ns_feature_dim_from_vw_example">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_ns_feature_dim_from_vw_example</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vw_example</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="reference internal" href="_modules/flaml/onlineml/autovw.html#AutoVW.get_ns_feature_dim_from_vw_example"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.AutoVW.get_ns_feature_dim_from_vw_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dictionary of feature dimensionality for each namespace singleton</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">learn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_sample</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/onlineml/autovw.html#AutoVW.learn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform one online learning step with the given data sample</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_sample</strong> (<em>vw_example</em>) – one data sample on which the model gets updated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_sample</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/onlineml/autovw.html#AutoVW.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict on the input example (e.g., vw example)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_sample</strong> (<em>vw_example</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="nlp">
 <h2>NLP<a class="headerlink" href="#nlp" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaml.nlp.AutoTransformers">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">flaml.nlp.</span></span><span class="sig-name descname"><span class="pre">AutoTransformers</span></span><a class="reference internal" href="_modules/flaml/nlp/autotransformers.html#AutoTransformers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.nlp.AutoTransformers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The AutoTransformers class</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">autohf</span> <span class="o">=</span> <span class="n">AutoTransformers</span><span class="p">()</span>
+<span class="n">autohf_settings</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;resources_per_trial&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cpu&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+           <span class="s2">&quot;num_samples&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+           <span class="s2">&quot;time_budget&quot;</span><span class="p">:</span> <span class="mi">100000</span><span class="p">,</span>
+           <span class="s2">&quot;ckpt_per_epoch&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+           <span class="s2">&quot;fp16&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+          <span class="p">}</span>
+
+<span class="n">validation_metric</span><span class="p">,</span> <span class="n">analysis</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">autohf_settings</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaml.nlp.AutoTransformers.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_budget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_metric_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_metric_mode_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ckpt_per_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp16</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources_per_trial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ray_local_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">custom_hpo_args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/nlp/autotransformers.html#AutoTransformers.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.nlp.AutoTransformers.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fine tuning the huggingface using the hpo setting</p>
+<dl>
+<dt>An example:</dt><dd><dl>
+<dt>autohf_settings = {“resources_per_trial”: {“cpu”: 1},</dt><dd><blockquote>
+<div><p>“num_samples”: 1,
+“time_budget”: 100000,
+“ckpt_per_epoch”: 1,
+“fp16”: False,</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>validation_metric, analysis = autohf.fit(<a href="#id2"><span class="problematic" id="id3">**</span></a>autohf_settings)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>resources_per_trial</strong> – A dict showing the resources used by each trial,
+e.g., {“gpu”: 4, “cpu”: 4}</p></li>
+<li><p><strong>num_samples</strong> – An int variable of the maximum number of trials</p></li>
+<li><p><strong>time_budget</strong> – An int variable of the maximum time budget</p></li>
+<li><p><strong>custom_metric_name</strong> – A string of the dataset name or a function,
+e.g., ‘accuracy’, ‘f1’, ‘loss’</p></li>
+<li><p><strong>custom_metric_mode_name</strong> – A string of the mode name,
+e.g., “max”, “min”, “last”, “all”</p></li>
+<li><p><strong>ckpt_per_epoch</strong> – An integer value of number of checkpoints per epoch, default = 1</p></li>
+<li><p><strong>verbose</strong> – int, default=1 | Controls the verbosity, higher means more
+messages</p></li>
+<li><p><strong>fp16</strong> – boolean, default = True | whether to use fp16</p></li>
+<li><p><strong>ray_local_mode</strong> – boolean, default = False | whether to use the local mode (debugging mode) for ray tune.run</p></li>
+<li><p><strong>custom_hpo_args</strong> – <p>The additional keyword arguments, e.g.,
+custom_hpo_args = {“points_to_evaluate”: [{</p>
+<blockquote>
+<div><p>”num_train_epochs”: 1,
+“per_device_train_batch_size”: 128, }]}</p>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>a dict storing the validation score
+analysis:</p>
+<blockquote>
+<div><p>a ray.tune.analysis.Analysis object storing the analysis results from tune.run</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>validation_metric</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaml.nlp.AutoTransformers.output_prediction">
+<span class="sig-name descname"><span class="pre">output_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_prediction_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_zip_file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/nlp/autotransformers.html#AutoTransformers.output_prediction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.nlp.AutoTransformers.output_prediction" title="Permalink to this definition">¶</a></dt>
+<dd><p>When using the original GLUE split, output the prediction on test data,
+and prepare the .zip file for submission</p>
+<p class="rubric">Example</p>
+<dl class="simple">
+<dt>local_archive_path = self.autohf.output_prediction(predictions,</dt><dd><p>output_prediction_path= self.console_args.data_root_dir + “result/”,
+output_zip_file_name=azure_save_file_name)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>predictions</strong> – a list of predictions, which is the output of AutoTransformers.predict()</p></li>
+<li><p><strong>output_prediction_path</strong> – output path for the prediction</p></li>
+<li><p><strong>output_zip_file_name</strong> – an string, which is the name of the output zip file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the path of the output .zip file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaml.nlp.AutoTransformers.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ckpt_json_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/nlp/autotransformers.html#AutoTransformers.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.nlp.AutoTransformers.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict label for test data.</p>
+<dl class="simple">
+<dt>An example:</dt><dd><p>predictions, test_metric = autohf.predict()</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ckpt_json_dir</strong> – the checkpoint for the fine-tuned huggingface if you wish to override
+the saved checkpoint in the training stage under self.path_utils._result_dir_per_run</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A numpy array of shape n * 1 - - each element is a predicted class
+label for an instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaml.nlp.AutoTransformers.prepare_data">
+<span class="sig-name descname"><span class="pre">prepare_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_root_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobid_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_wandb_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_seq_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resplit_portion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">custom_data_args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flaml/nlp/autotransformers.html#AutoTransformers.prepare_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#flaml.nlp.AutoTransformers.prepare_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare data</p>
+<p>An example:</p>
+<blockquote>
+<div><p>preparedata_setting = {
+“server_name”: “tmdev”,
+“data_root_path”: “data/”,
+“max_seq_length”: 128,
+“jobid_config”: jobid_config,
+“wandb_utils”: wandb_utils,
+“resplit_portion”: {“source”: [“train”, “validation”],
+“train”: [0, 0.8], “validation”: [0.8, 0.9], “test”: [0.9, 1.0]}
+}
+autohf.prepare_data(<a href="#id4"><span class="problematic" id="id5">**</span></a>preparedata_setting)</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>server_name</strong> – A string variable, which can be tmdev or azureml</p></li>
+<li><p><strong>data_root_path</strong> – The root path for storing the checkpoints and output results, e.g., “data/”</p></li>
+<li><p><strong>jobid_config</strong> – A JobID object describing the profile of job</p></li>
+<li><p><strong>wandb_utils</strong> – A WandbUtils object for wandb operations</p></li>
+<li><p><strong>max_seq_length</strong> (<em>optional</em>) – Max_seq_lckpt_per_epochength for the huggingface, this hyperparameter must be specified
+at the data processing step</p></li>
+<li><p><strong>resplit_portion</strong> – The proportion for resplitting the train and dev data when split_mode=”resplit”.
+If args.resplit_mode = “rspt”, resplit_portion is required</p></li>
+<li><p><strong>is_wandb_on</strong> – A boolean variable indicating whether wandb is used</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
