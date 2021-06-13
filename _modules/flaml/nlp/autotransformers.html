@@ -954,6 +954,7 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">remove_columns_</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No such label in column&quot;</span><span class="p">)</span>
                 <span class="k">pass</span>
 
         <span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">test_trainer</span><span class="o">.</span><span class="n">get_test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span><span class="p">)</span>
