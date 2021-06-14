@@ -163,7 +163,7 @@
     <span class="kn">import</span> <span class="nn">datasets</span>
     <span class="kn">import</span> <span class="nn">torch</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;To use the nlp module in flaml, run pip install flaml[nlp]&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;To use the nlp component in flaml, run pip install flaml[nlp]&quot;</span><span class="p">)</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">logger_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
@@ -256,7 +256,7 @@
             <span class="k">for</span> <span class="n">each_split_name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">}:</span>
                 <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">each_key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">each_split_name</span><span class="p">)</span> <span class="ow">and</span> <span class="n">each_key</span> <span class="o">!=</span> <span class="n">each_split_name</span><span class="p">),</span> \
                     <span class="s2">&quot;Dataset split must be within </span><span class="si">{}</span><span class="s2">, must be explicitly specified in dataset_config, e.g.,&quot;</span> \
-                    <span class="s2">&quot;&#39;fold_name&#39;: [&#39;train&#39;, &#39;validation_matched&#39;, &#39;test_matched&#39;]. Please refer to the example in the&quot;</span> \
+                    <span class="s2">&quot;&#39;fold_name&#39;: [&#39;train&#39;,&#39;validation_matched&#39;,&#39;test_matched&#39;]. Please refer to the example in the &quot;</span> \
                     <span class="s2">&quot;documentation of AutoTransformers.prepare_data()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fold_keys</span><span class="p">))</span>
         <span class="k">return</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span>
 
@@ -307,12 +307,19 @@
         <span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
         <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">PathUtils</span>
         <span class="kn">from</span> <span class="nn">.result_analysis.azure_utils</span> <span class="kn">import</span> <span class="n">JobID</span>
-        <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">load_console_args</span>
+        <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">load_dft_args</span>
 
-        <span class="n">console_args</span> <span class="o">=</span> <span class="n">load_console_args</span><span class="p">(</span><span class="o">**</span><span class="n">custom_data_args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_max_seq_length</span> <span class="o">=</span> <span class="n">max_seq_length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_server_name</span> <span class="o">=</span> <span class="n">server_name</span> <span class="k">if</span> <span class="n">server_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;tmdev&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">jobid_config</span> <span class="o">=</span> <span class="n">jobid_config</span> <span class="k">if</span> <span class="n">jobid_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">JobID</span><span class="p">(</span><span class="n">console_args</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            loading the jobid config from console args</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">console_args</span> <span class="o">=</span> <span class="n">load_dft_args</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jobid_config</span> <span class="o">=</span> <span class="n">JobID</span><span class="p">(</span><span class="n">console_args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">jobid_config</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jobid_config</span> <span class="o">=</span> <span class="n">jobid_config</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">custom_data_args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jobid_config</span><span class="o">.</span><span class="n">set_jobid_from_console_args</span><span class="p">(</span><span class="n">console_args</span><span class="o">=</span><span class="n">custom_data_args</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">is_wandb_on</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">.result_analysis.wandb_utils</span> <span class="kn">import</span> <span class="n">WandbUtils</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wandb_utils</span> <span class="o">=</span> <span class="n">WandbUtils</span><span class="p">(</span><span class="n">is_wandb_on</span><span class="o">=</span><span class="n">is_wandb_on</span><span class="p">,</span>
@@ -690,6 +697,7 @@
                <span class="p">):</span>
         <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TrainingArguments</span>
         <span class="kn">from</span> <span class="nn">.huggingface.trainer</span> <span class="kn">import</span> <span class="n">TrainerForAutoTransformers</span>
+        <span class="kn">from</span> <span class="nn">transformers.trainer_utils</span> <span class="kn">import</span> <span class="n">HPSearchBackend</span>
 
         <span class="sd">&#39;&#39;&#39;Fine tuning the huggingface using HF&#39;s API Transformers.hyperparameter_search (for comparitive purpose).</span>
 <span class="sd">               Transformers.hyperparameter_search has the following disadvantages:</span>
@@ -762,7 +770,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">path_utils</span><span class="o">.</span><span class="n">make_dir_per_run</span><span class="p">()</span>
 
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        <span class="kn">from</span> <span class="nn">transformers.trainer_utils</span> <span class="kn">import</span> <span class="n">IntervalStrategy</span><span class="p">,</span> <span class="n">HPSearchBackend</span>
         <span class="n">best_run</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">hyperparameter_search</span><span class="p">(</span>
             <span class="n">n_trials</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
             <span class="n">time_budget_s</span><span class="o">=</span><span class="n">time_budget</span><span class="p">,</span>
@@ -861,6 +868,13 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="kn">from</span> <span class="nn">.hpo.scheduler_auto</span> <span class="kn">import</span> <span class="n">AutoScheduler</span>
 
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Specify the other parse of jobid configs from custom_hpo_args, e.g., if the search algorithm was not </span>
+<span class="sd">            specified previously, can specify the algorithm here</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">custom_hpo_args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jobid_config</span><span class="o">.</span><span class="n">set_jobid_from_console_args</span><span class="p">(</span><span class="n">console_args</span><span class="o">=</span><span class="n">custom_hpo_args</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_resources_per_trial</span> <span class="o">=</span> <span class="n">resources_per_trial</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_metric</span><span class="p">(</span><span class="n">custom_metric_name</span><span class="p">,</span> <span class="n">custom_metric_mode_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_task</span><span class="p">()</span>
@@ -951,11 +965,9 @@
         <span class="n">test_trainer</span> <span class="o">=</span> <span class="n">TrainerForAutoTransformers</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span> <span class="n">training_args</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobid_config</span><span class="o">.</span><span class="n">spt</span> <span class="o">==</span> <span class="s2">&quot;ori&quot;</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;label&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">remove_columns_</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No such label in column&quot;</span><span class="p">)</span>
-                <span class="k">pass</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cleaning the existing label column from test data&quot;</span><span class="p">)</span>
 
         <span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">test_trainer</span><span class="o">.</span><span class="n">get_test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span><span class="p">)</span>
         <span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">test_trainer</span><span class="o">.</span><span class="n">prediction_loop</span><span class="p">(</span><span class="n">test_dataloader</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Prediction&quot;</span><span class="p">)</span>
