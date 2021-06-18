@@ -2,7 +2,7 @@ description: finetuning test on AMLK8s
 
 target:
   service: amlk8s
-  name: ms-shared-v100
+  name: ms-shared
 
 environment:
   image: sonichi/hpo4hf:latest
@@ -21,7 +21,7 @@ code:
 search:
   job_template:
     name: _{experiment_name:s}_{auto:3s}
-    sku: 32G4
+    sku: G4-V100
     command:
     - python FLAML/test/hf/run_autohf.py --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model_size} --learning_rate {learning_rate} --weight_decay {weight_decay} --key_path "." --sample_num 1 --time_budget 100000 --root_log_path "logs_seed/" --resplit_mode rspt
     submit_args: &retry_args
