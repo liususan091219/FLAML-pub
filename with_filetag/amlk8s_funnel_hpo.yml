@@ -14,7 +14,6 @@ environment:
     - git checkout exp
     - pip install -e.[blendsearch,ray] --user
     - pip install azure-storage-blob
-    - git lfs install
 
 code:
   local_dir: $CONFIG_DIR/../key/
