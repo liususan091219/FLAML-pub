@@ -13,8 +13,8 @@ environment:
     - cd FLAML
     - git checkout exp
     - pip install -e.[blendsearch,ray] --user
+    - export WANDB_API_KEY=7553d982a2247ca8324ec648bd302678105e1058
     - pip install azure-storage-blob
-    - git lfs install
 
 code:
   local_dir: $CONFIG_DIR/../key/
@@ -22,7 +22,7 @@ code:
 search:
   job_template:
     name: _{experiment_name:s}_{auto:3s}
-    sku: G4-V100
+    sku: G4-V100 ^itpwus2v100cl-s,itp-v100-scus-2,itp-v100-eus,itpeastusv100cl,ms-eus-v100-webx,itp-v100-wus2,sea-v100-16-ms,itpscusv100cl,itphyperdgxcl1-s,itpeastusv100cl2,itphyperdgx2cl1,itpmtlv100cl1-s 
     command:
     - python FLAML/test/hf/run_autohf.py --server_name tmdev --algo_mode {algo_mode} --dataset_subdataset_name {dataset_subdataset_name} --space_mode {space_mode} --algo_name {algo_name} --pruner {pruner} --pretrained_model_size {pretrained_model} --data_root_dir 'data/' --sample_num 10000 --time_budget 14400 --rep_id {rep_id} --resplit_mode {resplit_mode} --search_alg_args_mode {search_alg_args_mode} --key_path . --root_log_path {root_log_path} --yml_file amlk8s_funnel_hpo.yml
     submit_args: &retry_args
