@@ -13,7 +13,7 @@ environment:
     - cd FLAML
     - git checkout exp
     - pip install -e.[blendsearch,ray] --user
-    - pip install azure-storage-blob
+    - pip install tensorboardX<=2.2 azure-storage-blob --user
 
 code:
   local_dir: $CONFIG_DIR/../key/
