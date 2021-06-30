@@ -16,7 +16,7 @@ environment:
     - pip install 'tensorboardX<=2.2' azure-storage-blob --user
 
 code:
-  local_dir: $CONFIG_DIR/../key/
+  local_dir: $CONFIG_DIR/key/
 
 search:
   job_template:
