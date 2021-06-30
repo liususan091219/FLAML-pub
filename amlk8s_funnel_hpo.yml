@@ -17,7 +17,7 @@ environment:
     - git lfs install
 
 code:
-  local_dir: $CONFIG_DIR/../key/
+  local_dir: $CONFIG_DIR/key/
 
 search:
   job_template:
