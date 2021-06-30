@@ -37,7 +37,7 @@ search:
       values: ["glue:cola", "glue:mrpc", "glue:rte"]
     - name: learning_rate
       spec: discrete
-      values: [5e-6, 8e-6, 4e-5]
+      values: [5e-6, 1.5e-5, 2.5e-5]
     - name: weight_decay
       spec: discrete
       values: [0.0, 0.1]
