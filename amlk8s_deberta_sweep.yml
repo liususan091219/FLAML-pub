@@ -14,6 +14,7 @@ environment:
     - git checkout exp
     - pip install -e.[blendsearch,ray] --user
     - pip install 'tensorboardX<=2.2' azure-storage-blob --user
+    - export MKL_NUM_THREADS=1
 
 code:
   local_dir: $CONFIG_DIR/key/
