@@ -28,7 +28,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 14
+  max_trials: 28
   params:
     - name: pretrained_model_size
       spec: discrete
@@ -49,4 +49,4 @@ search:
                ]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["glue:sst2"]
+      values: ["hate_offensive:", "dbpedia_14:"]
