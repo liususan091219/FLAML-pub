@@ -28,7 +28,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 90
+  max_trials: 120
   params:
     - name: pretrained_model_size
       spec: discrete
@@ -50,7 +50,7 @@ search:
                ]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["hate_offensive:", "dbpedia_14:", "glue:sst2"]
+      values: ["imdb:", "yelp_review_full:", "yelp_polarity:", "amazon_polarity:"]
     - name: seed_transformers
       spec: discrete
       values: [41, 42]
