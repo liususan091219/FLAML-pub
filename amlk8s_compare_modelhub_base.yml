@@ -38,7 +38,6 @@ search:
                "albert-xlarge-v2 base",
                "albert-xlarge-v1 base",
                "distilbert-base-uncased base",
-               "distilbert-base-uncased base",
                "clem/autonlp-test3-2101787 base",
                "distilbert-base-uncased-finetuned-sst-2-english base",
                "sampathkethineedi/industry-classification base",
