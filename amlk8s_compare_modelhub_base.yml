@@ -1,0 +1,58 @@
+description: finetuning test on AMLK8s
+
+target:
+  service: amlk8s
+  name: ms-shared
+
+environment:
+  image: sonichi/hpo4hf:latest
+  setup:
+    # - pip install transformers datasets wandb prompt_toolkit==1.0.14 --user
+    # - sudo apt-get -y install git
+    - git clone https://github.com/liususan091219/FLAML.git
+    - cd FLAML
+    - git checkout exp
+    - pip install -e.[blendsearch,ray] --user
+    - pip install 'tensorboardX<=2.2' azure-storage-blob --user
+    - export MKL_NUM_THREADS=1
+
+code:
+  local_dir: $CONFIG_DIR/key/
+
+search:
+  job_template:
+    name: _{experiment_name:s}_{auto:3s}
+    sku: G4-V100 ^itpwus2v100cl-s,itp-v100-scus-2,itp-v100-eus,itpeastusv100cl,ms-eus-v100-webx,itp-v100-wus2,sea-v100-16-ms,itpscusv100cl,itphyperdgxcl1-s,itpeastusv100cl2,itphyperdgx2cl1,ms-weu-v100-webx,ccp-v100,g-v100-4x-weu,itpmtlv100cl1-s,g-v100-8x-ncus,ms-aip-webxt,v100-scus
+    command:
+    - python FLAML/test/hf/run_autohf.py --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model_size} --key_path "." --sample_num 1 --time_budget 10000 --root_log_path "logs_modelhub/" --resplit_mode rspt --space_mode uni --search_alg_args_mode cus --algo_mode hpo
+    submit_args: &retry_args
+      max_attempts: 0
+  type: grid
+  max_trials: 60
+  params:
+    - name: pretrained_model_size
+      spec: discrete
+      values: ["microsoft/xtremedistil-l12-h384-uncased base",
+               "google/electra-base-generator base",
+               "google/electra-large-generator base",
+               "albert-xlarge-v2 base",
+               "albert-xlarge-v1 base",
+               "distilbert-base-uncased base",
+               "distilbert-base-uncased base",
+               "clem/autonlp-test3-2101787 base",
+               "distilbert-base-uncased-finetuned-sst-2-english base",
+               "sampathkethineedi/industry-classification base",
+               "mrm8488/distilroberta-finetuned-tweets-hate-speech base",
+               "distilroberta-base base",
+               "bert-base-uncased base",
+               "bert-base-cased base",
+               "emilyalsentzer/Bio_ClinicalBERT base",
+               "emilyalsentzer/Bio_Discharge_Summary_BERT base",
+               "Intel/bert-base-uncased-sparse-70-unstructured base",
+               "Intel/bert-base-uncased-mnli-sparse-70-unstructured-no-classifier base",
+               "nateraw/bert-base-uncased-emotion base",
+               "Hate-speech-CNERG/bert-base-uncased-hatexplain base",
+               ]
+    - name: dataset_subdataset_name
+      spec: discrete
+      values: ["hate_offensive:", "dbpedia_14:", "glue:sst2"]
