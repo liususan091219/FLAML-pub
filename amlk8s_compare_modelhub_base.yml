@@ -22,7 +22,7 @@ code:
 search:
   job_template:
     name: _{experiment_name:s}_{auto:3s}
-    sku: G4-V100 ^itpwus2v100cl-s,itp-v100-scus-2,itp-v100-eus,itpeastusv100cl,ms-eus-v100-webx,itp-v100-wus2,sea-v100-16-ms,itpscusv100cl,itphyperdgxcl1-s,itpeastusv100cl2,itphyperdgx2cl1,ms-weu-v100-webx,ccp-v100,g-v100-4x-weu,itpmtlv100cl1-s,g-v100-8x-ncus,ms-aip-webxt,v100-scus
+    sku: G4-V100 ^itpwus2v100cl-s,itp-v100-scus-2,itp-v100-eus,itpeastusv100cl,ms-eus-v100-webx,itp-v100-wus2,sea-v100-16-ms,itpscusv100cl,itphyperdgxcl1-s,itpeastusv100cl2,itphyperdgx2cl1,ms-weu-v100-webx,ccp-v100,g-v100-4x-weu,itpmtlv100cl1-s,g-v100-8x-ncus,ms-aip-webxt,v100-scus,ms-eu-v-32-2-web
     command:
     - python FLAML/test/hf/run_autohf.py --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model_size} --key_path "." --sample_num 1 --time_budget 10000 --root_log_path "logs_modelhub/" --resplit_mode rspt --space_mode uni --search_alg_args_mode cus --algo_mode hpo
     submit_args: &retry_args
