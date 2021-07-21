@@ -28,7 +28,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 30
+  max_trials: 28
   params:
     - name: pretrained_model_size
       spec: discrete
@@ -46,7 +46,6 @@ search:
                "emilyalsentzer/Bio_Discharge_Summary_BERT base",
                "Intel/bert-base-uncased-sparse-70-unstructured base",
                "Intel/bert-base-uncased-mnli-sparse-70-unstructured-no-classifier base",
-               "Hate-speech-CNERG/bert-base-uncased-hatexplain base",
                ]
     - name: dataset_subdataset_name
       spec: discrete
