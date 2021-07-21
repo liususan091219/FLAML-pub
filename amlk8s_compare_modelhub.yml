@@ -49,7 +49,7 @@ search:
                ]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["imdb:", "yelp_review_full:", "yelp_polarity:", "amazon_polarity:"]
+      values: ["imdb:"]
     - name: seed_transformers
       spec: discrete
       values: [41, 42]
