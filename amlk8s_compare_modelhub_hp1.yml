@@ -28,14 +28,13 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 14
+  max_trials: 13
   params:
     - name: pretrained_model_size
       spec: discrete
       values: ["prajjwal1/bert-tiny small",
                "mrm8488/bert-tiny-finetuned-sms-spam-detection small",
                "microsoft/deberta-base small",
-               "shahrukhx01/question-vs-statement-classifier small",
                "albert-base-v2 small",
                "albert-base-v1 small",
                "cointegrated/rubert-tiny small",
