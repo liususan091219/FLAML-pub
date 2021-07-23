@@ -49,5 +49,5 @@ search:
                ]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["dbpedia_14:"]
+      values: ["hate_speech18:"]
       # imdb: -> glue:sst2 -> yelp_polarity: -> hate_offensive: -> dbpedia_14:

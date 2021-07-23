@@ -49,4 +49,4 @@ search:
                ]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["dbpedia_14:"]
+      values: ["hate_speech18:"]
