@@ -28,7 +28,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 14
+  max_trials: 59
   params:
     - name: pretrained_model_size
       spec: discrete
@@ -46,6 +46,51 @@ search:
                "albert-large-v1 small",
                "microsoft/xtremedistil-l6-h384-uncased small",
                "mrm8488/chEMBL26_smiles_v2 small",
+               "microsoft/xtremedistil-l12-h384-uncased base",
+               "google/electra-base-generator base",
+               "google/electra-large-generator base",
+               "albert-xlarge-v2 base",
+               "albert-xlarge-v1 base",
+               "distilbert-base-uncased base",
+               "mrm8488/distilroberta-finetuned-tweets-hate-speech base",
+               "distilroberta-base base",
+               "bert-base-uncased base",
+               "bert-base-cased base",
+               "emilyalsentzer/Bio_ClinicalBERT base",
+               "emilyalsentzer/Bio_Discharge_Summary_BERT base",
+               "Intel/bert-base-uncased-sparse-70-unstructured base",
+               "Intel/bert-base-uncased-mnli-sparse-70-unstructured-no-classifier base",
+               "severo/autonlp-sentiment_detection-1781580 base",
+               "nlpaueb/legal-bert-base-uncased base",
+               "google/electra-base-discriminator base",
+               "zlucia/legalbert base",
+               "zlucia/custom-legalbert base",
+               "lordtt13/COVID-SciBERT base",
+               "saibo/legal-roberta-base base",
+               "mrm8488/codebert-base-finetuned-detect-insecure-code base",
+               "aychang/roberta-base-imdb base",
+               "EMBEDDIA/crosloengual-bert base",
+               "facebook/muppet-roberta-base base",
+               "VictorSanh/roberta-base-finetuned-yelp-polarity base",
+               "roberta-base base",
+               "microsoft/deberta-base-mnli base",
+               "microsoft/deberta-base base",
+               "EMBEDDIA/finest-bert base",
+               "bert-base-multilingual-uncased base",
+               "sagorsarker/codeswitch-spaeng-sentiment-analysis-lince base",
+               "albert-xxlarge-v2 large",
+               "albert-xxlarge-v1 large",
+               "bert-large-cased large",
+               "bert-large-cased-whole-word-masking large",
+               "roberta-large large",
+               "bert-large-uncased large",
+               "bert-large-uncased-whole-word-masking large",
+               "google/bigbird-roberta-large large",
+               "facebook/muppet-roberta-large large",
+               "siebert/sentiment-roberta-large-english large",
+               "idjotherwise/autonlp-reading_prediction-172506 large",
+               "microsoft/deberta-large large",
+               "microsoft/deberta-large-mnli large"
                ]
     - name: dataset_subdataset_name
       spec: discrete
