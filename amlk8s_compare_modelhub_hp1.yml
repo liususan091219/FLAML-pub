@@ -95,4 +95,4 @@ search:
     - name: dataset_subdataset_name
       spec: discrete
       values: ["amazon_polarity:"]
-      # imdb: -> glue:sst2 -> yelp_polarity: -> hate_offensive: -> dbpedia_14:
+      # imdb: -> glue:sst2 -> yelp_polarity: -> amazon_polarity:
