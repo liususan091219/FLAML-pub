@@ -85,7 +85,7 @@ search:
                "roberta-large large",
                "bert-large-uncased large",
                "bert-large-uncased-whole-word-masking large",
-               "google/bigbird-roberta-large large",
+              #  "google/bigbird-roberta-large large",
                "facebook/muppet-roberta-large large",
                "siebert/sentiment-roberta-large-english large",
                "idjotherwise/autonlp-reading_prediction-172506 large",
@@ -94,5 +94,5 @@ search:
                ]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["amazon_polarity:"]
+      values: ["glue:sst2"]
       # imdb: -> glue:sst2 -> yelp_polarity: -> hate_offensive: -> dbpedia_14:
