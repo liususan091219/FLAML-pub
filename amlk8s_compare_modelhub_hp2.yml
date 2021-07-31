@@ -34,7 +34,6 @@ search:
       spec: discrete
       values: ["prajjwal1/bert-tiny small",
                "mrm8488/bert-tiny-finetuned-sms-spam-detection small",
-               "microsoft/deberta-base small",
                "shahrukhx01/question-vs-statement-classifier small",
                "albert-base-v2 small",
                "albert-base-v1 small",
