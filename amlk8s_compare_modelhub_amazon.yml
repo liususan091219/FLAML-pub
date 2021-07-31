@@ -94,7 +94,6 @@ search:
     - name: dataset_subdataset_name
       spec: discrete
       values: ["amazon_polarity:"]
-      # imdb: -> glue:sst2 -> yelp_polarity: -> amazon_polarity:
     - name: source_fold
       spec: discrete
       values: ["train"]
