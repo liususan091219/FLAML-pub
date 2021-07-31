@@ -104,3 +104,4 @@ search:
     - name: root_log_path
       spec: discrete
       values: ["logs_modelhub/hp1_trainsize/"]
+      # logs_modelhub/hp1_trainsize/ -> logs_modelhub/hp2_trainsize/
