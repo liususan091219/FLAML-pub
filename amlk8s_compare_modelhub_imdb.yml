@@ -93,13 +93,13 @@ search:
                ]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["amazon_polarity:"]
+      values: ["imdb:"]
     - name: source_fold
       spec: discrete
       values: ["train"]
     - name: split_portion
       spec: discrete
-      values: ["0.1 0.2 0.01 0.011 0.011 0.012"]
+      values: ["0.5 1.0 0.05 0.055 0.055 0.06"]
     - name: root_log_path
       spec: discrete
       values: ["logs_modelhub/hp1_trainsize/"]
