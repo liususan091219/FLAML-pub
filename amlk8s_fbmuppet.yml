@@ -41,7 +41,7 @@ search:
     - name: source_fold
       spec: discrete
       values: ["train test"]
-      # "train test" ->
+      # "train test" -> "train" -> "train validation" -> "train"
     - name: split_portion
       spec: discrete
       values: ["0 0.8 0.8 0.9 0.9 1.0"]
