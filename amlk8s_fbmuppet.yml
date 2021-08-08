@@ -41,13 +41,14 @@ search:
     - name: source_fold
       spec: discrete
       values: ["train test"]
+      # "train test" ->
     - name: split_portion
       spec: discrete
       values: ["0 0.8 0.8 0.9 0.9 1.0"]
       # "0 0.8 0.8 0.9 0.9 1.0"
       # -> "0.0 0.01 0.01 0.011 0.011 0.012"
       # -> "0 0.8 0.8 0.9 0.9 1.0"
-      # ->
+      # -> "0 0.05 0.05 0.055 0.055 0.06"
     - name: root_log_path
       spec: discrete
       values: ["logs_azure/"]
