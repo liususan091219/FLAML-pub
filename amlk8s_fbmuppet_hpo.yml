@@ -28,12 +28,12 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 1
+  max_trials: 2
   params:
     - name: pretrained_model_size
       spec: discrete
-      values: ["facebook/muppet-roberta-large large"
-               ]
+      values: ["facebook/muppet-roberta-large large",
+              "facebook/muppet-roberta-base base"]
     - name: dataset_subdataset_name
       spec: discrete
       values: ["imdb:"]
