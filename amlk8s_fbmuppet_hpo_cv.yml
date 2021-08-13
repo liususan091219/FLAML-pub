@@ -28,7 +28,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 2
+  max_trials: 3
   params:
     - name: pretrained_model_size
       spec: discrete
@@ -53,4 +53,4 @@ search:
       values: ["logs_azure/"]
     - name: algo_name
       spec: discrete
-      values: ["rs", "optuna"]
+      values: ["bs", "rs", "optuna"]
