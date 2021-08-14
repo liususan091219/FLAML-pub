@@ -53,4 +53,4 @@ search:
       values: ["logs_azure/"]
     - name: algo_name
       spec: discrete
-      values: ["bs", "rs", "optuna"]
+      values: ["bs"]
