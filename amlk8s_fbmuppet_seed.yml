@@ -36,7 +36,7 @@ search:
     - name: dataset_subdataset_name
       spec: discrete
       values: ["imdb:", "amazon_polarity:", "glue:sst2", "yelp_polarity:", "glue:rte", "glue:cola"]
-      # imdb: -> amazon_polarity: -> glue:sst2 -> yelp_polarity:
+      # imdb: -> amazon_polarity: -> glue:sst2 -> yelp_polarity: -> glue:rte -> glue:cola
     - name: source_fold
       spec: discrete
       values: ["train test"]
