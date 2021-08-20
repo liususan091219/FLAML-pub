@@ -28,14 +28,14 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 6
+  max_trials: 2
   params:
     - name: pretrained_model_size
       spec: discrete
-      values: ["facebook/muppet-roberta-large large"]
+      values: ["facebook/muppet-roberta-large large", "roberta-large large"]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["imdb:", "amazon_polarity:", "glue:sst2", "yelp_polarity:", "glue:rte", "glue:cola"]
+      values: ["imdb:"]
       # imdb: -> amazon_polarity: -> glue:sst2 -> yelp_polarity: -> glue:rte -> glue:cola
     - name: source_fold
       spec: discrete
