@@ -39,11 +39,11 @@ search:
       # imdb: -> amazon_polarity: -> glue:sst2 -> yelp_polarity:
     - name: source_fold
       spec: discrete
-      values: ["train test"]
+      values: ["train"]
       # "train test" -> "train" -> "train validation" -> "train"
     - name: split_portion
       spec: discrete
-      values: ["0 0.8 0.8 0.9 0.9 1.0"]
+      values: ["0.0 0.01 0.01 0.011 0.011 0.012"]
       # "0 0.8 0.8 0.9 0.9 1.0"
       # -> "0.0 0.01 0.01 0.011 0.011 0.012"
       # -> "0 0.8 0.8 0.9 0.9 1.0"

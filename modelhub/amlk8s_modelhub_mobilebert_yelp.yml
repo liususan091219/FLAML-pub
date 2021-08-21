@@ -39,7 +39,7 @@ search:
       # imdb: -> amazon_polarity: -> glue:sst2 -> yelp_polarity:
     - name: source_fold
       spec: discrete
-      values: ["train test"]
+      values: ["train"]
       # "train test" -> "train" -> "train validation" -> "train"
     - name: split_portion
       spec: discrete
