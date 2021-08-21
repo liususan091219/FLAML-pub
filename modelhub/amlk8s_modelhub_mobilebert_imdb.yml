@@ -28,11 +28,12 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 2
+  max_trials: 4
   params:
     - name: pretrained_model_size
       spec: discrete
-      values: ["google/mobilebert-uncased base"]
+      values: ["google/mobilebert-uncased base",
+               "albert-xlarge-v2 base"]
     - name: dataset_subdataset_name
       spec: discrete
       values: ["imdb:"]
