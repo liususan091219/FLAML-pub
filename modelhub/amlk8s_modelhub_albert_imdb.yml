@@ -32,18 +32,18 @@ search:
   params:
     - name: pretrained_model_size
       spec: discrete
-      values: ["google/mobilebert-uncased base"]
+      values: ["albert-xlarge-v2 base"]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["amazon_polarity:"]
+      values: ["imdb:"]
       # imdb: -> amazon_polarity: -> glue:sst2 -> yelp_polarity:
     - name: source_fold
       spec: discrete
-      values: ["train"]
+      values: ["train test"]
       # "train test" -> "train" -> "train validation" -> "train"
     - name: split_portion
       spec: discrete
-      values: ["0.0 0.01 0.01 0.011 0.011 0.012"]
+      values: ["0 0.8 0.8 0.9 0.9 1.0"]
       # "0 0.8 0.8 0.9 0.9 1.0"
       # -> "0.0 0.01 0.01 0.011 0.011 0.012"
       # -> "0 0.8 0.8 0.9 0.9 1.0"
