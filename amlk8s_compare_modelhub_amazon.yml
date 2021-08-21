@@ -102,5 +102,5 @@ search:
       values: ["0.1 0.2 0.01 0.011 0.011 0.012"]
     - name: root_log_path
       spec: discrete
-      values: ["logs_modelhub/hp1_trainsize/"]
+      values: ["logs_mobilebert/hp1_trainsize/"]
       # logs_modelhub/hp1_trainsize/ -> logs_modelhub/hp2_trainsize/
