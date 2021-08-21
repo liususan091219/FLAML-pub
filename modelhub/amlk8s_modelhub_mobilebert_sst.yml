@@ -35,7 +35,7 @@ search:
       values: ["google/mobilebert-uncased base"]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["amazon_polarity:"]
+      values: ["glue:sst2"]
       # imdb: -> amazon_polarity: -> glue:sst2 -> yelp_polarity:
     - name: source_fold
       spec: discrete
