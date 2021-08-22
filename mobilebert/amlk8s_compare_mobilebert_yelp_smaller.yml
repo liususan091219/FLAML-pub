@@ -42,7 +42,7 @@ search:
       values: ["train"]
     - name: split_portion
       spec: discrete
-      values: ["0 0.05 0.05 0.055 0.055 0.06"]
+      values: ["0 0.005 0.05 0.055 0.055 0.06"]
     - name: root_log_path
       spec: discrete
       values: ["logs_mobilebert/hp1/", "logs_mobilebert/hp2/"]

@@ -36,13 +36,13 @@ search:
                ]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["yelp_polarity:"]
+      values: ["imdb:"]
     - name: source_fold
       spec: discrete
       values: ["train"]
     - name: split_portion
       spec: discrete
-      values: ["0 0.05 0.05 0.055 0.055 0.06"]
+      values: ["0 0.8 0.8 0.9 0.9 1.0"]
     - name: root_log_path
       spec: discrete
       values: ["logs_mobilebert/hp1/", "logs_mobilebert/hp2/"]
