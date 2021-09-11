@@ -500,5 +500,3 @@ if __name__ == "__main__":
         _test_hpo(console_args, jobid_config, autohf, wandb_utils)
     else:
         modelcard_exp(console_args)
-
-
