@@ -4,6 +4,7 @@ import os
 import shutil
 import numpy
 
+import flaml
 from flaml.nlp import AutoTransformers
 from flaml.nlp import AzureUtils, JobID
 from flaml.nlp.result_analysis.wandb_utils import WandbUtils
