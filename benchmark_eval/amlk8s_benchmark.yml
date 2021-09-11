@@ -28,7 +28,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 2
+  max_trials: 8
   params:
     - name: pretrained_model_size
       spec: discrete
