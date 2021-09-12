@@ -12,7 +12,7 @@ environment:
     - git clone https://github.com/liususan091219/FLAML.git
     - cd FLAML
     - git checkout exp
-    - pip install -e.[blendsearch,ray,nlp] --user
+    - pip install -e.[nlp] --user
     - python setup.py install
     - pip install 'tensorboardX<=2.2' azure-storage-blob --user
     - export MKL_NUM_THREADS=1
