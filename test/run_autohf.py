@@ -3,6 +3,7 @@
 import os
 import shutil
 import numpy
+numpy.random.seed(42)
 
 import flaml
 from flaml.nlp import AutoTransformers
