@@ -46,7 +46,7 @@ search:
       values: ["0 0.8 0.8 0.8 0.9 1.0"]
     - name: root_log_path
       spec: discrete
-      values: ["logs_azure/"]
+      values: ["logs_benchmark/stable/"]
     - name: space_mode
       spec: discrete
       values: ["gnr"]
