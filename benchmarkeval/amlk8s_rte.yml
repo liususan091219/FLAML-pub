@@ -11,9 +11,8 @@ environment:
     # - sudo apt-get -y install git
     - git clone https://github.com/liususan091219/FLAML.git FLAML0
     - cd FLAML0
-    - git checkout nlp
-    - pip install -e.[nlp] --user
-    - pip install 'tensorboardX<=2.2' azure-storage-blob --user
+    - git checkout exp_928d
+    - pip install -e. --user
     - export MKL_NUM_THREADS=1
     - cd ..
     - git clone https://github.com/liususan091219/FLAML.git
@@ -26,35 +25,41 @@ code:
 search:
   job_template:
     name: _{experiment_name:s}_{auto:3s}
-    sku: G4-V100 ^itpwus2v100cl-s,itp-v100-scus-2,itp-v100-eus,itpeastusv100cl,ms-eus-v100-webx,itp-v100-wus2,sea-v100-16-ms,itpscusv100cl,itphyperdgxcl1-s,itpeastusv100cl2,itphyperdgx2cl1,ms-weu-v100-webx,g-v100-4x-weu,itpmtlv100cl1-s,g-v100-8x-ncus,ms-aip-webxt,ms-scus-v1002-we,g-v100-8x-eus-1
+    sku: G4-V100 ^itpwus2v100cl-s,itp-v100-scus-2,itp-v100-eus,itpeastusv100cl,itp-v100-wus2,sea-v100-16-ms,itpscusv100cl,itphyperdgxcl1-s,ms-weu-v100-webx,g-v100-4x-weu,itpmtlv100cl1-s,g-v100-8x-ncus,ms-aip-webxt,ms-scus-v1002-we,g-v100-8x-eus-1
     command:
-    - python FLAML/test/run_autohf.py --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model_size} --key_path "." --sample_num 100000 --time_budget 3600 --root_log_path {root_log_path} --resplit_mode rspt --space_mode {space_mode} --algo_name {algo_name} --search_alg_args_mode dft --algo_mode hpo --source_fold {source_fold} --split_portion {split_portion} --pruner {pruner}
+    - python FLAML/test/run_autohf.py --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model_size} --key_path "." --sample_num 100000 --time_budget 3600 --root_log_path {root_log_path} --resplit_mode rspt --space_mode {space_mode} --algo_name {algo_name} --search_alg_args_mode dft --algo_mode hpo --source_fold {source_fold} --split_portion {split_portion} --pruner {pruner} --seed_np {seed_np}
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 8
+  max_trials: 48
   params:
     - name: pretrained_model_size
       spec: discrete
       values: ["facebook/muppet-roberta-base base", "roberta-base base"]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["glue:rte", "glue:qnli"]
+      values: ["glue:rte"]
+    - name: seed_np
+      spec: discrete
+      values: [101, 102]
+    - name: seed_bs
+      spec: discrete
+      values: [20, 30]
     - name: source_fold
       spec: discrete
       values: ["train validation"]
     - name: split_portion
       spec: discrete
-      values: ["0 0.8 0.8 0.8 0.9 1.0"]
+      values: ["0 0.8 0.8 0.9 0.9 1.0"]
     - name: root_log_path
       spec: discrete
-      values: ["logs_benchmark/stable/"]
+      values: ["logs_benchmark/latest/"]
     - name: space_mode
       spec: discrete
       values: ["gnr"]
     - name: algo_name
       spec: discrete
-      values: ["bs"]
+      values: ["bs", "optuna", "rs"]
     - name: pruner
       spec: discrete
       values: ["None", "asha"]
