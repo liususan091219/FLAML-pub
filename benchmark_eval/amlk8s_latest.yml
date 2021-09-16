@@ -12,8 +12,7 @@ environment:
     - git clone https://github.com/liususan091219/FLAML.git FLAML0
     - cd FLAML0
     - git checkout exp_928d
-    - pip install -e.[nlp] --user
-    - pip install 'tensorboardX<=2.2' azure-storage-blob --user
+    - pip install -e. --user
     - export MKL_NUM_THREADS=1
     - cd ..
     - git clone https://github.com/liususan091219/FLAML.git
@@ -28,11 +27,11 @@ search:
     name: _{experiment_name:s}_{auto:3s}
     sku: G4-V100 ^itpwus2v100cl-s,itp-v100-scus-2,itp-v100-eus,itpeastusv100cl,ms-eus-v100-webx,itp-v100-wus2,sea-v100-16-ms,itpscusv100cl,itphyperdgxcl1-s,itpeastusv100cl2,itphyperdgx2cl1,ms-weu-v100-webx,g-v100-4x-weu,itpmtlv100cl1-s,g-v100-8x-ncus,ms-aip-webxt,ms-scus-v1002-we,g-v100-8x-eus-1
     command:
-    - python FLAML/test/run_autohf.py --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model_size} --key_path "." --sample_num 100000 --time_budget 3600 --root_log_path {root_log_path} --resplit_mode rspt --space_mode {space_mode} --algo_name {algo_name} --search_alg_args_mode dft --algo_mode hpo --source_fold {source_fold} --split_portion {split_portion} --pruner {pruner}
+    - python FLAML/test/run_autohf.py --dataset_subdataset_name {dataset_subdataset_name} --pretrained_model_size {pretrained_model_size} --key_path "." --sample_num 1 --time_budget 3 --root_log_path {root_log_path} --resplit_mode rspt --space_mode {space_mode} --algo_name {algo_name} --search_alg_args_mode dft --algo_mode hpo --source_fold {source_fold} --split_portion {split_portion} --pruner {pruner}
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 8
+  max_trials: 1
   params:
     - name: pretrained_model_size
       spec: discrete
