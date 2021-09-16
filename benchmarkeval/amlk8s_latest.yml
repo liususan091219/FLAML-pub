@@ -31,7 +31,7 @@ search:
     submit_args: &retry_args
       max_attempts: 0
   type: grid
-  max_trials: 48
+  max_trials: 72
   params:
     - name: pretrained_model_size
       spec: discrete
@@ -41,7 +41,7 @@ search:
       values: ["glue:rte", "glue:qnli"]
     - name: seed_np
       spec: discrete
-      values: [41, 42]
+      values: [41, 42, 43]
     - name: source_fold
       spec: discrete
       values: ["train validation"]
