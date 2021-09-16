@@ -2,8 +2,6 @@
 '''
 import os
 import shutil
-import numpy
-numpy.random.seed(42)
 
 import flaml
 from flaml.nlp import AutoTransformers
@@ -387,6 +385,8 @@ def _test_hpo(console_args,
               ):
     import subprocess
     import re
+    import numpy
+    numpy.random.seed(console_args.seed_np)
 
     preparedata_setting = get_preparedata_setting(console_args, jobid_config, wandb_utils, **custom_args)
     autohf.prepare_data(**preparedata_setting)
