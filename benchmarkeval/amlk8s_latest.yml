@@ -41,7 +41,7 @@ search:
       values: ["glue:rte", "glue:qnli"]
     - name: seed_np
       spec: discrete
-      values: [41, 42, 43]
+      values: [101, 102, 103]
     - name: source_fold
       spec: discrete
       values: ["train validation"]
