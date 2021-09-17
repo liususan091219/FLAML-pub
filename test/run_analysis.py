@@ -686,6 +686,24 @@ def rename_azure_file(console_args):
                                 old_jobid=old_jobid_configs,
                                 new_jobid=new_jobid_configs)
 
+def print_benchmark(console_args):
+    from flaml.nlp.result_analysis.azure_utils import JobID
+    from flaml.nlp import AzureUtils
+
+    partial_jobid_config = JobID()
+    partial_jobid_config.mod = "hpo"
+    partial_jobid_config.subdat = "rte"
+
+    each_root_log_path = "logs_benchmark/latest/"
+    azure_utils = AzureUtils(root_log_path=each_root_log_path,
+                             azure_key_path=console_args.key_path,
+                             jobid_config=partial_jobid_config)
+    matched_config_score_lists = azure_utils.get_config_and_score_from_partial_jobid(
+        root_log_path=each_root_log_path,
+        partial_jobid=partial_jobid_config)
+    get_val_test_scores(matched_config_score_lists,
+                        "accuracy" if partial_jobid_config.subdat != "cola" else "matthews_correlation")
+
 if __name__ == "__main__":
     from flaml.nlp.utils import load_dft_args
     arg_parser = argparse.ArgumentParser()
@@ -695,6 +713,7 @@ if __name__ == "__main__":
     console_args = load_dft_args()
 
     partial_config_large = create_partial_config_hpo()
+    print_benchmark(console_args=console_args)
     #analyze_small_large(console_args=args)
     #compare_learningrate(console_args=args)
     #print_crossvalidation_result(console_args=args)
@@ -703,4 +722,3 @@ if __name__ == "__main__":
     #compare_muppet(console_args=args)
     #rename_azure_file(console_args=args)
     #plot_boxplot(console_args=args)
-    spearman_correlation(console_args=console_args)
