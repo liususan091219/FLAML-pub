@@ -696,9 +696,9 @@ def print_benchmark(console_args):
     partial_jobid_config = JobID()
     partial_jobid_config.mod = "hpo"
     partial_jobid_config.subdat = "rte"
-    partial_jobid_config.sdnp = set(["101", "102"])
-    partial_jobid_config.sdbs = set(["20", "30"])
-    partial_jobid_config.alg = "bs"
+    partial_jobid_config.sddt = set(["101", "102", "103"])
+    #partial_jobid_config.sdbs = set(["20", "30"])
+    partial_jobid_config.alg = "optuna"
     partial_jobid_config.pre_full = "facebook-muppet-roberta-base"
     overlap_seed_configs = None
     config2matchedbloblists = {}
@@ -723,7 +723,7 @@ def print_benchmark(console_args):
         else:
             overlap_seed_configs = overlap_seed_configs.intersection(this_seed_configs)
 
-    for partial_jobid_config.pru in ("asha", "None"):
+    for partial_jobid_config.pru in ["asha", "None"]:
         print("pruner", partial_jobid_config.pru)
         azure_utils = AzureUtils(root_log_path=console_args.root_log_path,
                                  azure_key_path=console_args.key_path,
@@ -736,7 +736,7 @@ def print_benchmark(console_args):
 
     azure_utils.plot_hpo_curves(
         config2matchedbloblists,
-        config2color={"asha": "blue", "None": "red"},
+        config2color={"asha": "red", "None": "blue"},
         plot_title=partial_jobid_config.subdat + "_" + partial_jobid_config.alg + "_" + partial_jobid_config.pre_full
     )
 
