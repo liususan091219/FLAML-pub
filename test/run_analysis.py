@@ -595,29 +595,32 @@ def compare_learningrate(console_args):
     get_val_test_scores(matched_config_score_lists,
                         "accuracy" if partial_jobid_config.subdat != "cola" else "matthews_correlation")
 
-def get_val_test_scores(matched_config_score_lists, metric_name):
-    val_scores = []
-    test_scores = []
-    weight_decays = []
+def get_seed_configs(matched_config_score_lists):
+    seed_configs = []
     for configscore_list in matched_config_score_lists:
         if configscore_list._test_metric:
-            best_config = configscore_list.get_best_config()
-            weight_decay = best_config.config['weight_decay']
-            weight_decays.append(weight_decay)
-            val_scores.append(best_config.metric_score['max'])
-            test_scores.append(configscore_list._test_metric[metric_name])
-    wd2best = {}
-    for idx in range(len(test_scores)):
-        wd = weight_decays[idx]
-        try:
-            best_config = wd2best[wd]
-            if val_scores[idx] > best_config[0]:
-                best_config = [val_scores[idx], test_scores[idx]]
-        except KeyError:
-            best_config = [val_scores[idx], test_scores[idx]]
-        wd2best[wd] = best_config
+            this_seed_config = str(configscore_list._jobid_config.sdbs) + "_" + str(configscore_list._jobid_config.sdnp)
+            seed_configs.append(this_seed_config)
+    return set(seed_configs)
 
-    stop = 0
+def get_val_test_scores(matched_config_score_lists, metric_name, all_seed_configs):
+    val_scores = []
+    test_scores = []
+    trial_nums = []
+    all_this_configs = []
+    import numpy as np
+    for configscore_list in matched_config_score_lists:
+        if configscore_list._test_metric:
+            this_seed_config = str(configscore_list._jobid_config.sdbs) + "_" + str(configscore_list._jobid_config.sdnp)
+            best_config = configscore_list.get_best_config()
+            if this_seed_config in all_seed_configs:
+                trial_nums.append(len(configscore_list._config_score_list))
+                val_scores.append(best_config.metric_score['max'])
+                test_scores.append(configscore_list._test_metric[metric_name])
+                all_this_configs.append(this_seed_config)
+    print("{}\t{}\t{}".format("%.4f" % np.mean(val_scores), "%.4f" % np.mean(test_scores), "%.4f" % np.mean(trial_nums)))
+    print([float("%.4f" % x) for x in sorted(val_scores)])
+    print([float("%.4f" % x) for x in sorted(test_scores)])
 
 def create_partial_config_list():
     jobid_config = JobID()
@@ -693,21 +696,54 @@ def print_benchmark(console_args):
     partial_jobid_config = JobID()
     partial_jobid_config.mod = "hpo"
     partial_jobid_config.subdat = "rte"
+    partial_jobid_config.sdnp = set(["101", "102"])
+    partial_jobid_config.sdbs = set(["20", "30"])
+    partial_jobid_config.alg = "bs"
+    partial_jobid_config.pre_full = "facebook-muppet-roberta-base"
+    overlap_seed_configs = None
+    config2matchedbloblists = {}
 
-    each_root_log_path = "logs_benchmark/latest/"
-    azure_utils = AzureUtils(root_log_path=each_root_log_path,
-                             azure_key_path=console_args.key_path,
-                             jobid_config=partial_jobid_config)
-    matched_config_score_lists = azure_utils.get_config_and_score_from_partial_jobid(
-        root_log_path=each_root_log_path,
-        partial_jobid=partial_jobid_config)
-    get_val_test_scores(matched_config_score_lists,
-                        "accuracy" if partial_jobid_config.subdat != "cola" else "matthews_correlation")
+    # azure_utils = AzureUtils(root_log_path=console_args.root_log_path,
+    #                          azure_key_path=console_args.key_path,
+    #                          jobid_config=partial_jobid_config)
+    # matched_config_score_lists = azure_utils.get_config_and_score_from_partial_jobid(
+    #     root_log_path=console_args.root_log_path,
+    #     partial_jobid=partial_jobid_config)
+
+    for partial_jobid_config.pru in ["asha", "None"]:
+        azure_utils = AzureUtils(root_log_path=console_args.root_log_path,
+                                 azure_key_path=console_args.key_path,
+                                 jobid_config=partial_jobid_config)
+        matched_config_score_lists = azure_utils.get_config_and_score_from_partial_jobid(
+            root_log_path=console_args.root_log_path,
+            partial_jobid=partial_jobid_config)
+        this_seed_configs = get_seed_configs(matched_config_score_lists)
+        if overlap_seed_configs is None:
+            overlap_seed_configs = this_seed_configs
+        else:
+            overlap_seed_configs = overlap_seed_configs.intersection(this_seed_configs)
+
+    for partial_jobid_config.pru in ("asha", "None"):
+        print("pruner", partial_jobid_config.pru)
+        azure_utils = AzureUtils(root_log_path=console_args.root_log_path,
+                                 azure_key_path=console_args.key_path,
+                                 jobid_config=partial_jobid_config)
+        matched_config_score_lists = azure_utils.get_config_and_score_from_partial_jobid(
+            root_log_path=console_args.root_log_path,
+            partial_jobid=partial_jobid_config)
+        #get_val_test_scores(matched_config_score_lists, "accuracy", overlap_seed_configs)
+        config2matchedbloblists[partial_jobid_config.pru] = matched_config_score_lists
+
+    azure_utils.plot_hpo_curves(
+        config2matchedbloblists,
+        config2color={"asha": "blue", "None": "red"},
+        plot_title=partial_jobid_config.subdat + "_" + partial_jobid_config.alg + "_" + partial_jobid_config.pre_full
+    )
 
 if __name__ == "__main__":
     from flaml.nlp.utils import load_dft_args
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument('--key_path', type=str, help='key path', required=False, default="../../")
+    arg_parser.add_argument('--key_path', type=str, help='key path', required=False, default="../../../")
     arg_parser.add_argument('--root_log_path', type=str,
                             help='root log path of blob storage', required=True, default="logs_azure/")
     console_args = load_dft_args()
