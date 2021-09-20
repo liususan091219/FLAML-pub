@@ -38,7 +38,7 @@ search:
       values: ["facebook/muppet-roberta-base base"]
     - name: dataset_subdataset_name
       spec: discrete
-      values: ["anli:"]
+      values: ["hyperpartisan_news_detection:bypublisher"]
     - name: seed_data
       spec: discrete
       values: [101, 102, 103]
@@ -47,10 +47,10 @@ search:
       values: ["rspt"]
     - name: source_fold
       spec: discrete
-      values: ["train validation test"]
+      values: ["train validation"]
     - name: split_portion
       spec: discrete
-      values: ["0 0.8 0.8 0.9 0.9 1.0"]
+      values: ["0 0.1 0.1 0.11 0.11 0.12"]
     - name: root_log_path
       spec: discrete
       values: ["logs_benchmark/latest/"]
