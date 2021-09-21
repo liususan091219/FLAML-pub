@@ -38,7 +38,7 @@ search:
       values: ["facebook/muppet-roberta-base base"]
     - name: seed_bs
       spec: discrete
-      values: [10, 20, 30]
+      values: [20, 30, 40]
     - name: resplit_mode
       spec: discrete
       values: ["rspt"]
