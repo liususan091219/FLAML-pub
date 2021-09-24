@@ -47,7 +47,7 @@ search:
       values: ["0 0.1 0.1 0.11 0.11 0.12"]
     - name: root_log_path
       spec: discrete
-      values: ["logs_benchmark/latest/"]
+      values: ["logs_benchmark/latest/ckpt_5/"]
     - name: space_mode
       spec: discrete
       values: ["gnr"]
