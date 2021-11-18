@@ -44,19 +44,11 @@ Online AutoML
 .. autoclass:: flaml.AutoVW
    :members:
 
-
 NLP
 ---
 
-.. autoclass:: flaml.nlp.AutoTransformers
+.. autoclass:: flaml.nlp.HPOArgs
    :members:
-
-.. autoclass:: flaml.nlp.AzureUtils
-   :members:
-
-.. autoclass:: flaml.nlp.JobID
-   :members:
-
 
 .. Indices and tables
 .. ==================
