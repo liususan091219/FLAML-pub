@@ -221,8 +221,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">trained_estimator</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">trained_estimator</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">trained_estimator</span> <span class="o">=</span> <span class="n">trained_estimator</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">trained_estimator</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">trained_estimator</span><span class="p">:</span>
                 <span class="n">trained_estimator</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metric_for_logging</span> <span class="o">=</span> <span class="n">metric_for_logging</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">val_loss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">obj</span><span class="p">,</span> <span class="n">config</span>
