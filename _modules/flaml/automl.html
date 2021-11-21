@@ -409,8 +409,9 @@
             <span class="n">estimator</span><span class="p">,</span> <span class="n">train_time</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;estimator&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;train_time&quot;</span><span class="p">]</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">use_ray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_ray&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="p">[</span><span class="s2">&quot;use_ray&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">_is_nlp_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">):</span>
+                <span class="n">use_ray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_ray&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="p">[</span><span class="s2">&quot;use_ray&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">estimator</span><span class="p">,</span> <span class="n">train_time</span> <span class="o">=</span> <span class="n">train_estimator</span><span class="p">(</span>
                 <span class="n">X_train</span><span class="o">=</span><span class="n">sampled_X_train</span><span class="p">,</span>
                 <span class="n">y_train</span><span class="o">=</span><span class="n">sampled_y_train</span><span class="p">,</span>
@@ -422,10 +423,11 @@
                 <span class="n">budget</span><span class="o">=</span><span class="n">budget</span><span class="p">,</span>
                 <span class="n">fit_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="p">,</span>
             <span class="p">)</span>
-            <span class="k">if</span> <span class="n">use_ray</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="p">[</span><span class="s2">&quot;use_ray&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">use_ray</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="p">[</span><span class="s2">&quot;use_ray&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">_is_nlp_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">use_ray</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="p">[</span><span class="s2">&quot;use_ray&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">use_ray</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="p">[</span><span class="s2">&quot;use_ray&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">sampled_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fit_kwargs</span><span class="p">[</span><span class="s2">&quot;sample_weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
         <span class="k">return</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">train_time</span>
