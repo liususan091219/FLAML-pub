@@ -221,6 +221,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">trained_estimator</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">trained_estimator</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">trained_estimator</span> <span class="o">=</span> <span class="n">trained_estimator</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">trained_estimator</span><span class="p">:</span>
+                <span class="n">trained_estimator</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metric_for_logging</span> <span class="o">=</span> <span class="n">metric_for_logging</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">val_loss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">obj</span><span class="p">,</span> <span class="n">config</span>
 
@@ -614,9 +617,7 @@
         <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sample&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
         <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;ensemble&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ensemble&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;log_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;log_type&quot;</span><span class="p">,</span> <span class="s2">&quot;better&quot;</span><span class="p">)</span>
-        <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;model_history&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="s2">&quot;model_history&quot;</span><span class="p">,</span> <span class="kc">False</span>
-        <span class="p">)</span>
+        <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;model_history&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model_history&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;log_training_metric&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;log_training_metric&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;mem_thres&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;mem_thres&quot;</span><span class="p">,</span> <span class="n">MEM_THRES</span><span class="p">)</span>
         <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;pred_time_limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pred_time_limit&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
@@ -2173,7 +2174,7 @@
             <span class="n">verbose</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
             <span class="n">raise_on_failed_trial</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">keep_checkpoints_num</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">checkpoint_score_attr</span><span class="o">=</span><span class="s2">&quot;min-val_loss&quot;</span>
+            <span class="n">checkpoint_score_attr</span><span class="o">=</span><span class="s2">&quot;min-val_loss&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="c1"># logger.info([trial.last_result for trial in analysis.trials])</span>
         <span class="n">trials</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
