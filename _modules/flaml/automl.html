@@ -2173,7 +2173,7 @@
             <span class="n">verbose</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
             <span class="n">raise_on_failed_trial</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">keep_checkpoints_num</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">checkpoint_score_attr</span><span class="o">=</span><span class="s2">&quot;val_loss&quot;</span>
+            <span class="n">checkpoint_score_attr</span><span class="o">=</span><span class="s2">&quot;min-val_loss&quot;</span>
         <span class="p">)</span>
         <span class="c1"># logger.info([trial.last_result for trial in analysis.trials])</span>
         <span class="n">trials</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
