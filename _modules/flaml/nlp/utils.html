@@ -66,6 +66,7 @@
 <span class="kn">from</span> <span class="nn">..data</span> <span class="kn">import</span> <span class="n">SEQCLASSIFICATION</span><span class="p">,</span> <span class="n">SEQREGRESSION</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
 
+
 <span class="k">def</span> <span class="nf">_is_nlp_task</span><span class="p">(</span><span class="n">task</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">task</span> <span class="ow">in</span> <span class="p">[</span><span class="n">SEQCLASSIFICATION</span><span class="p">,</span> <span class="n">SEQREGRESSION</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">True</span>
@@ -75,9 +76,10 @@
 
 <span class="k">def</span> <span class="nf">load_default_huggingface_metric_for_task</span><span class="p">(</span><span class="n">task</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">task</span> <span class="o">==</span> <span class="n">SEQCLASSIFICATION</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;accuracy&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span>
     <span class="k">elif</span> <span class="n">task</span> <span class="o">==</span> <span class="n">SEQREGRESSION</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;rmse&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;rmse&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span>
+
 
 <span class="k">global</span> <span class="n">tokenized_column_names</span>
 
@@ -171,12 +173,14 @@
         <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_clean_value</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pieces</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="n">_clean_value</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
     <span class="k">return</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
 
+
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
 
 
 <span class="k">def</span> <span class="nf">date_str</span><span class="p">():</span>
     <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">_%H-%M-%S&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%H-%M-%S&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_generate_dirname</span><span class="p">(</span><span class="n">experiment_tag</span><span class="p">,</span> <span class="n">trial_id</span><span class="p">):</span>
@@ -188,6 +192,7 @@
 
 <span class="k">def</span> <span class="nf">get_logdir_name</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">local_dir</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">os</span>
+
     <span class="n">local_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">local_dir</span><span class="p">)</span>
     <span class="n">logdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">local_dir</span><span class="p">,</span> <span class="n">dirname</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">logdir</span>
@@ -197,7 +202,9 @@
     <span class="k">global</span> <span class="n">counter</span>
     <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">experiment_tag</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">_</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span> <span class="n">format_vars</span><span class="p">(</span><span class="n">trial_config</span><span class="p">))</span>
-    <span class="n">logdir</span> <span class="o">=</span> <span class="n">get_logdir_name</span><span class="p">(</span><span class="n">_generate_dirname</span><span class="p">(</span><span class="n">experiment_tag</span><span class="p">,</span> <span class="n">trial_id</span><span class="o">=</span><span class="n">trial_id</span><span class="p">),</span> <span class="n">local_dir</span><span class="p">)</span>
+    <span class="n">logdir</span> <span class="o">=</span> <span class="n">get_logdir_name</span><span class="p">(</span>
+        <span class="n">_generate_dirname</span><span class="p">(</span><span class="n">experiment_tag</span><span class="p">,</span> <span class="n">trial_id</span><span class="o">=</span><span class="n">trial_id</span><span class="p">),</span> <span class="n">local_dir</span>
+    <span class="p">)</span>
     <span class="k">return</span> <span class="n">logdir</span>
 
 
@@ -316,7 +323,6 @@
     <span class="n">max_seq_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;max seq length&quot;</span><span class="p">})</span>
 
     <span class="n">ckpt_per_epoch</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;checkpoint per epoch&quot;</span><span class="p">})</span>
-
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">load_args</span><span class="p">():</span>
