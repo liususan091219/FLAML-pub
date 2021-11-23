@@ -223,7 +223,7 @@
             <span class="k">if</span> <span class="n">trained_estimator</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">trained_estimator</span> <span class="o">=</span> <span class="n">trained_estimator</span>
         <span class="k">elif</span> <span class="n">trained_estimator</span><span class="p">:</span>
-                <span class="n">trained_estimator</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+            <span class="n">trained_estimator</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metric_for_logging</span> <span class="o">=</span> <span class="n">metric_for_logging</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">val_loss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">obj</span><span class="p">,</span> <span class="n">config</span>
 
@@ -802,6 +802,8 @@
                 <span class="n">X</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span>
                     <span class="p">{</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">_str_columns</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span> <span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">List</span><span class="p">)</span>
+                        <span class="k">else</span> <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span>
                         <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
                     <span class="p">}</span>
                 <span class="p">)</span>
