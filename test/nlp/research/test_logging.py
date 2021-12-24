@@ -15,12 +15,13 @@ def custom_metric(
     groups_test=None,
     groups_train=None,
 ):
+    from datasets import Dataset
+    eval_dataset = Dataset.from_pandas(X_test)
 
-    return 0, {
-        "val_loss": 0,
-        "train_loss": 0,
-        "pred_time": 0,
-    }
+    trainer = estimator._model
+    metrics = trainer.evaluate(eval_dataset)
+
+    return 0, metrics
 
 
 @pytest.mark.skipif(sys.platform == "darwin", reason="do not run on mac os")
