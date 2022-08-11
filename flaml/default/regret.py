@@ -26,7 +26,7 @@ def load_result(filename, task_type, metric):
     #     .groupby("task")
     #     .mean()[metric]
     # )
-    baseline = (df.loc[df["task"] == df["params"], ["task", metric]].groupby("task").mean()[metric])
+    baseline = df.groupby(["task", "params"]).mean().groupby("task")[metric].max()
     df = df.pivot_table(index="params", columns="task", values=metric)
     return df, baseline
 
