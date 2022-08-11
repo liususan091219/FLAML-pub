@@ -21,11 +21,12 @@ def load_result(filename, task_type, metric):
     df["params"] = df["params"].apply(
         lambda x: path.splitext(path.basename(eval(x)["_modeljson"]))[0]
     )
-    baseline = (
-        df.loc[df["task"] == df["params"], ["task", metric]]
-        .groupby("task")
-        .mean()[metric]
-    )
+    # baseline = (
+    #     df.loc[df["task"] == df["params"], ["task", metric]]
+    #     .groupby("task")
+    #     .mean()[metric]
+    # )
+    baseline = (df.loc[df["task"] == df["params"], ["task", metric]].groupby("task").mean()[metric])
     df = df.pivot_table(index="params", columns="task", values=metric)
     return df, baseline
 
