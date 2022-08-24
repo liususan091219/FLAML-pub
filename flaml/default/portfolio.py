@@ -193,6 +193,7 @@ def main():
         )
         regret = build_regret(all, baseline)
         regret = regret.replace(np.inf, np.nan).dropna(axis=1, how="all")
+
         if args.exclude:
             regret = regret.loc[[i for i in regret.index if args.exclude not in i]]
             regret = regret[[c for c in regret.columns if args.exclude not in c]]
