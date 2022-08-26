@@ -47,7 +47,7 @@ def config_predictor_tuple(tasks, configs, meta_features, regret_matrix):
     return (meta_features_norm, preferences, proc)
 
 
-def build_portfolio(meta_features, regret, strategy):
+def build_portfolio(meta_features, regret, strategy, k=0):
     """Build a portfolio from meta features and regret matrix.
 
     Args:
@@ -55,11 +55,13 @@ def build_portfolio(meta_features, regret, strategy):
         regret: A dataframe of regret matrix.
         strategy: A str of the strategy, one of ("greedy", "greedy-feedback").
     """
-    assert strategy in ("greedy", "greedy-feedback")
+    assert strategy in ("greedy", "greedy-feedback", "askl2")
     if strategy == "greedy":
-        portfolio = greedy.construct_portfolio(regret, None, regret_bound)
+        portfolio = greedy.construct_portfolio(regret, None, regret_bound, is_sklearn=False, k=k)
     elif strategy == "greedy-feedback":
         portfolio = greedy.construct_portfolio(regret, meta_features, regret_bound)
+    elif strategy == "askl2":
+        portfolio = greedy.construct_portfolio(regret, None, regret_bound, is_sklearn=True, k=k)
     if "default" not in portfolio and "default" in regret.index:
         portfolio += ["default"]
     return portfolio
@@ -178,6 +180,12 @@ def main():
         default=["lgbm", "xgboost"],
         nargs="+",
     )
+    parser.add_argument(
+        "--k",
+        type=int,
+        help="Estimators to merge portfolios",
+        default=4,
+    )
     args = parser.parse_args()
 
     meta_features = pd.read_csv(args.metafeatures, index_col=0).groupby(level=0).first()
@@ -189,21 +197,17 @@ def main():
     for estimator in args.estimator:
         # produce regret
         all, baseline = load_result(
-            f"{args.input}/{estimator}/results.csv", args.task, "result"
+            f"{args.input}/{estimator}/results.csv", args.task, "result", args.exclude
         )
         regret = build_regret(all, baseline)
         regret = regret.replace(np.inf, np.nan).dropna(axis=1, how="all")
-
-        if args.exclude:
-            regret = regret.loc[[i for i in regret.index if args.exclude not in i]]
-            regret = regret[[c for c in regret.columns if args.exclude not in c]]
 
         print(
             f"Regret matrix complete: {100 * regret.count().sum() / regret.shape[0] / regret.shape[1]}%"
         )
         print(f"Num models considered: {regret.shape[0]}")
 
-        configs = build_portfolio(meta_features, regret, args.strategy)
+        configs = build_portfolio(meta_features, regret, args.strategy, k=args.k)
         meta_predictor = serialize(
             configs,
             regret,

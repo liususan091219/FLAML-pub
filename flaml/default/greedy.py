@@ -8,8 +8,51 @@ def _augment(row):
     max, avg, id = row.max(), row.mean(), row.index[0]
     return row.apply(lambda x: (x, max, avg, id))
 
+def simple(R, e, metric="sum", k=0):
+    S = []
+    C = R.index.tolist()
+    T = R.columns
 
-def construct_portfolio(regret_matrix, meta_features, regret_bound):
+    prev = np.inf
+    i = 0
+    while set(S) < set(C):
+        if prev <= e:
+            warning(
+                f"Reached target eps of {e}! k = {i + 1}. Declining to pick further!"
+            )
+            break
+
+        O = [S + [d] for d in set(C) - set(S)]
+        V = [(R.loc[x].min(axis=0) - e).clip(lower=0).sum() for x in O]
+
+        # if np.nanmin(V) > 0.995 * prev and i > 2 and metric == "sum":
+        #     warning(
+        #         f"May be overfitting at k = {i + 1}, current = {np.nanmin(V):.3f},\
+        #           prev = {prev:.3f}. Stopping."
+        #     )
+        #     break
+        #
+        # if len(V) == 1:
+        #     S = O[0]
+        #     break
+
+        if np.sort(V)[1] - np.sort(V)[0] < 0.0001 and metric == "sum":
+            warning(f"tie detected at M = {np.sort(V)[0]}, using alternative metric")
+            tied = np.flatnonzero(V - np.nanmin(V) < 0.0001)
+            O = [O[i] for i in tied]
+            V_2 = [R.loc[x].min(axis=0).mean() for x in O]
+            S = O[np.nanargmin(V_2)]
+        else:
+            S = O[np.nanargmin(V)]
+
+        prev = np.nanmin(V)
+        i += 1
+        if i >= k:
+            break
+
+    return S
+
+def construct_portfolio(regret_matrix, meta_features, regret_bound, is_sklearn=False, k=0):
     """The portfolio construction algorithm.
 
     (Reference)[https://arxiv.org/abs/2202.09927].
@@ -69,7 +112,7 @@ def construct_portfolio(regret_matrix, meta_features, regret_bound):
         candidates = [configs + [d] for d in all_configs.difference(configs)]
         losses, avg_regret = tuple(zip(*(loss(x) for x in candidates)))
         sorted_losses = np.sort(losses)
-        if sorted_losses[1] - sorted_losses[0] < eps:
+        if not is_sklearn and sorted_losses[1] - sorted_losses[0] < eps:
             minloss = np.nanmin(losses)
             print(
                 f"tie detected at loss = {sorted_losses[0]}, using alternative metric."
@@ -77,7 +120,7 @@ def construct_portfolio(regret_matrix, meta_features, regret_bound):
             tied = np.flatnonzero(losses - minloss < eps)
             losses = [(avg_regret[i], i) for i in tied]
             minloss, ind = min(losses)
-            if minloss > prev - eps:
+            if minloss > prev - eps and False:
                 print(
                     f"May be overfitting at k = {i + 1}, current = {minloss:.5f}, "
                     f"prev = {prev:.5f}. Stopping."
@@ -86,9 +129,10 @@ def construct_portfolio(regret_matrix, meta_features, regret_bound):
             configs = candidates[ind]
             prev = minloss
         else:
-            configs = candidates[np.nanargmin(losses)]
+            configs = candidates[np.nanargmin(losses)] if not is_sklearn else candidates[np.nanargmin(avg_regret)]
         i += 1
-        if sorted_losses[0] <= eps:
+        if i >= k: break
+        if sorted_losses[0] <= eps and False:
             print(
                 f"Reached target regret bound of {regret_bound}! k = {i}. Declining to pick further!"
             )

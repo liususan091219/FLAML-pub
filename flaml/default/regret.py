@@ -12,7 +12,7 @@ def write_regret(regret, filename):
     regret.to_csv(filename)
 
 
-def load_result(filename, task_type, metric):
+def load_result(filename, task_type, metric, exclude):
     df = pd.read_csv(filename)
     df = df.loc[
         (df[metric].notnull()) & (df.type == task_type),
@@ -26,6 +26,9 @@ def load_result(filename, task_type, metric):
     #     .groupby("task")
     #     .mean()[metric]
     # )
+    if exclude:
+        df = df.loc[[i for i in df.index if exclude not in df.iloc[i]["task"] and exclude not in df.iloc[i]["params"]]]
+
     baseline = df.groupby(["task", "params"]).mean().groupby("task")[metric].max()
     df = df.pivot_table(index="params", columns="task", values=metric)
     return df, baseline
