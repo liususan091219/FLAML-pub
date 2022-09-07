@@ -1990,7 +1990,7 @@ class SARIMAX(ARIMA):
                 train_df[[TS_VALUE_COL]],
                 exog=train_df[regressors],
                 order=(self.params["p"], self.params["d"], self.params["q"]),
-                seasonality_order=(
+                seasonal_order=(
                     self.params["P"],
                     self.params["D"],
                     self.params["Q"],
@@ -2003,7 +2003,7 @@ class SARIMAX(ARIMA):
             model = SARIMAX_estimator(
                 train_df,
                 order=(self.params["p"], self.params["d"], self.params["q"]),
-                seasonality_order=(
+                seasonal_order=(
                     self.params["P"],
                     self.params["D"],
                     self.params["Q"],
